@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 790" role="img" aria-label="Zelunavo Stilkarte: dunkler Hintergrund, Neonpink, Neongrün und Neonblau, Beispieloberfläche für einen Snackautomatenbetrieb">
+  <rect width="1200" height="790" fill="#0B1016"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <g transform="translate(68 42)">
+      <rect x="1" y="1" width="51" height="58" rx="10" fill="#151C26" stroke="#57D8FF" stroke-width="3"/>
+      <rect x="8" y="9" width="37" height="34" rx="5" fill="#0B1016" stroke="#334252" stroke-width="2"/>
+      <rect x="12" y="15" width="8" height="12" rx="3" fill="#FF5AAE"/>
+      <rect x="23" y="15" width="8" height="12" rx="3" fill="#B7F66B"/>
+      <rect x="34" y="15" width="8" height="12" rx="3" fill="#57D8FF"/>
+      <path d="M13 35h27" stroke="#A7B3B9" stroke-width="2" stroke-linecap="round"/>
+      <rect x="11" y="49" width="23" height="5" rx="2.5" fill="#B7F66B"/>
+      <circle cx="40" cy="51.5" r="3" fill="#FF5AAE"/>
+    </g>
+    <text x="137" y="79" fill="#E8ECE8" font-size="30" font-weight="800" letter-spacing="-1">Zelunavo</text>
+    <text x="1095" y="76" fill="#A7B3B9" font-size="15" text-anchor="end">STILKARTE · ENTWURF 1</text>
+    <line x1="68" y1="118" x2="1132" y2="118" stroke="#334252" stroke-width="2"/>
+    <text x="68" y="160" fill="#FF5AAE" font-size="16" font-weight="800" letter-spacing="2">SNACKAUTOMATENBETRIEB · BÜROASSISTENZ</text>
+    <text x="68" y="222" fill="#E8ECE8" font-size="49" font-weight="800" letter-spacing="-2">Dunkel. Klar. Neon als Signal.</text>
+    <text x="68" y="256" fill="#A7B3B9" font-size="18">Ein ruhiger Arbeitsraum für Kontoauszug, Kassenbuch und Monatsabschluss.</text>
+
+    <g transform="translate(68 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#0B1016" stroke="#334252"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Hintergrund</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#0B1016</text>
+    </g>
+    <g transform="translate(247 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#E8ECE8"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Text</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#E8ECE8</text>
+    </g>
+    <g transform="translate(426 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#FF5AAE"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Marke · Pink</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#FF5AAE</text>
+    </g>
+    <g transform="translate(605 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#B7F66B"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Aktion · Grün</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#B7F66B</text>
+    </g>
+    <g transform="translate(784 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#57D8FF"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Info · Blau</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#57D8FF</text>
+    </g>
+    <g transform="translate(963 290)">
+      <rect width="166" height="126" rx="12" fill="#151C26" stroke="#334252"/>
+      <rect x="8" y="8" width="150" height="70" rx="8" fill="#FFD166"/>
+      <text x="13" y="101" fill="#E8ECE8" font-size="15" font-weight="700">Barumsatz · Gelb</text><text x="13" y="119" fill="#A7B3B9" font-size="12">#FFD166</text>
+    </g>
+
+    <rect x="68" y="450" width="680" height="273" rx="16" fill="#151C26" stroke="#334252" stroke-width="2"/>
+    <circle cx="98" cy="481" r="5" fill="#B7F66B"/>
+    <text x="113" y="487" fill="#A7B3B9" font-size="14">Fiktiver Monat · September 2026</text>
+    <text x="95" y="528" fill="#E8ECE8" font-size="28" font-weight="800">Monatsabschluss</text>
+    <text x="95" y="557" fill="#A7B3B9" font-size="16">Prüfe einen Beleg. Danach ist die Abschluss-PDF bereit.</text>
+    <rect x="95" y="584" width="158" height="39" rx="8" fill="#1D2835" stroke="#334252"/>
+    <text x="109" y="609" fill="#B7F66B" font-size="14" font-weight="700">✓ Kontoauszug</text>
+    <rect x="262" y="584" width="169" height="39" rx="8" fill="#1D2835" stroke="#FF5AAE" stroke-width="2"/>
+    <text x="276" y="609" fill="#E8ECE8" font-size="14" font-weight="700">2 · Belege prüfen</text>
+    <rect x="95" y="644" width="177" height="51" rx="10" fill="#B7F66B"/>
+    <text x="183.5" y="677" text-anchor="middle" fill="#0B1016" font-size="16" font-weight="800">Beleg prüfen</text>
+    <rect x="285" y="644" width="213" height="51" rx="10" fill="none" stroke="#57D8FF" stroke-width="2"/>
+    <text x="391.5" y="677" text-anchor="middle" fill="#57D8FF" font-size="16" font-weight="700">Unterlagen ansehen</text>
+
+    <rect x="766" y="450" width="363" height="273" rx="16" fill="#151C26" stroke="#334252" stroke-width="2"/>
+    <text x="792" y="489" fill="#E8ECE8" font-size="22" font-weight="800">Bedeutung der Farben</text>
+    <circle cx="802" cy="530" r="6" fill="#FFD166"/><text x="819" y="536" fill="#E8ECE8" font-size="16">Gelb · Barumsatz</text>
+    <circle cx="802" cy="568" r="6" fill="#B7F66B"/><text x="819" y="574" fill="#E8ECE8" font-size="16">Grün · Bankeinzahlung</text>
+    <circle cx="802" cy="606" r="6" fill="#57D8FF"/><text x="819" y="612" fill="#E8ECE8" font-size="16">Blau · Wechselgeld</text>
+    <line x1="792" y1="635" x2="1103" y2="635" stroke="#334252"/>
+    <text x="792" y="664" fill="#A7B3B9" font-size="14">Neon nur für Aktionen und Orientierung.</text>
+    <text x="792" y="688" fill="#A7B3B9" font-size="14">Druck-PDFs bleiben hell und gut lesbar.</text>
+    <text x="68" y="762" fill="#A7B3B9" font-size="14">ZELUNAVO · STILKARTE FÜR DIE FIKTIVE DEMO</text>
+  </g>
+</svg>

@@ -1,0 +1,5 @@
+Fjordmarkt Zutatenlieferung | Fjordmarkt Zutatenlieferant | 05.05.2026 | 525,00 EUR | LB-FIK-2026-507
+Büropark West Wochenbestellung | Büropark West | 11.05.2026 | 74,90 EUR | LB-FIK-2026-508
+Marktstand Hafenstadt | Marktstand Hafenstadt | 16.05.2026 | 158,40 EUR | LB-FIK-2026-509
+Lohn- und Betriebskosten | Lohn- und Betriebskosten Service | 20.05.2026 | 439,80 EUR | LB-FIK-2026-510
+Gerätewartung Nord | Gerätewartung Nord | 28.05.2026 | 1.290,00 EUR | LB-FIK-2026-511

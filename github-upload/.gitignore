@@ -1,0 +1,21 @@
+# Lokale Konten, Abrufe und echte Monatsunterlagen niemals in die Demo aufnehmen.
+.env
+.env.*
+**/gmail-oauth-client.json
+**/gmail-connection.json
+**/gmail-status.json
+**/gmail-manifest.json
+**/vendon-session.json
+**/vendon-session.json.session-storage.json
+**/vendon-status.json
+**/vendon-profile/
+**/Vendon/
+**/gmail-local/
+**/Monatsunterlagen/
+**/lokale-unterlagen/
+*.pem
+*.p12
+*.key
+.DS_Store
+__pycache__/
+*.py[cod]

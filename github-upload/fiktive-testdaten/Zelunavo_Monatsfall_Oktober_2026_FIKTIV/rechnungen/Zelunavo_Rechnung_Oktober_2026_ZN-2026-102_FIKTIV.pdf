@@ -1,0 +1,69 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Length 1787 >>
+stream
+BT /F2 11 Tf 1 0 0 1 48 790 Tm (FIKTIVES MUSTER · KEINE ECHTE RECHNUNG) Tj ET
+BT /F2 20 Tf 1 0 0 1 48 744 Tm (Markthalle Nord Demo) Tj ET
+BT /F1 9 Tf 1 0 0 1 48 721 Tm (Fiktive Beispieladresse · Demo-Hafen 10 · 00000 Musterstadt) Tj ET
+BT /F2 9 Tf 1 0 0 1 48 670 Tm (Rechnung an) Tj ET
+BT /F1 10 Tf 1 0 0 1 48 652 Tm (Zelunavo Automatenbetrieb · fiktiver Demo-Empfänger) Tj ET
+BT /F1 9 Tf 1 0 0 1 48 635 Tm (Beispielweg 4 · 00000 Musterstadt) Tj ET
+BT /F2 10 Tf 1 0 0 1 48 584 Tm (Rechnungsnummer: ZN-2026-102) Tj ET
+BT /F1 10 Tf 1 0 0 1 48 566 Tm (Rechnungsdatum: 14.10.2026) Tj ET
+BT /F1 10 Tf 1 0 0 1 48 548 Tm (Leistungszeitraum: Oktober 2026) Tj ET
+0.12 0.17 0.21 rg 0.12 0.17 0.21 RG 0.6 w 46 487 503 24 re B
+BT /F2 9 Tf 1 0 0 1 56 495 Tm (Leistung) Tj ET
+BT /F2 9 Tf 1 0 0 1 430 495 Tm (Menge) Tj ET
+BT /F2 9 Tf 1 0 0 1 493 495 Tm (Betrag) Tj ET
+0.25 0.31 0.35 RG 0.6 w 46 480 m 549 480 l S
+BT /F1 10 Tf 1 0 0 1 56 458 Tm (Getränkelieferung für Automaten) Tj ET
+BT /F1 10 Tf 1 0 0 1 438 458 Tm (1) Tj ET
+BT /F1 10 Tf 1 0 0 1 490 458 Tm (359,03 €) Tj ET
+0.25 0.31 0.35 RG 0.6 w 46 438 m 549 438 l S
+BT /F1 10 Tf 1 0 0 1 350 408 Tm (Nettobetrag) Tj ET
+BT /F1 10 Tf 1 0 0 1 490 408 Tm (359,03 €) Tj ET
+BT /F1 10 Tf 1 0 0 1 350 386 Tm (Umsatzsteuer 19 %) Tj ET
+BT /F1 10 Tf 1 0 0 1 490 386 Tm (68,22 €) Tj ET
+0.89 0.94 0.96 rg 0.25 0.31 0.35 RG 0.6 w 344 344 205 26 re B
+BT /F2 10 Tf 1 0 0 1 353 352 Tm (Rechnungsbetrag) Tj ET
+BT /F2 10 Tf 1 0 0 1 490 352 Tm (427,25 €) Tj ET
+BT /F1 9 Tf 1 0 0 1 48 285 Tm (Zahlung: SEPA-Lastschrift am 14.10.2026) Tj ET
+BT /F1 9 Tf 1 0 0 1 48 264 Tm (Betrag und Buchungstext sind für den fiktiven Demoabgleich erstellt.) Tj ET
+BT /F1 8 Tf 1 0 0 1 48 64 Tm (Fiktive Demo · keine echte Steuer- oder Banknummer · keine reale Lieferantenbeziehung) Tj ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 2 0 R /F2 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Count 1 /Kids [5 0 R] >>
+endobj
+7 0 obj
+<< /Title (Fiktive Rechnung ZN-2026-102 Oktober 2026) /Author (Zelunavo Demo) /Subject (Oktober 2026 FIKTIV) /Creator (Zelunavo synthetische Testdaten) >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000161 00000 n 
+0000000263 00000 n 
+0000002102 00000 n 
+0000002238 00000 n 
+0000002295 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R /Info 7 0 R >>
+startxref
+2465
+%%EOF

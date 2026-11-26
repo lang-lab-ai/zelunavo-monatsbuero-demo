@@ -1,0 +1,138 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+/Title (Zelunavo\137Rechnung\137September\1372026\137LB\055FIK\0552026\055025)
+/Author (Zelunavo Demo)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 4 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Contents 5 0 R
+/MediaBox [ 0 0 595.2756 841.8898 ]
+/Resources <<
+/Font 6 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+/Parent 2 0 R
+>>
+endobj
+5 0 obj
+<<
+/Length 603
+>>
+stream
+1 0 0 1 0 0 cm
+BT
+/F1 12 Tf
+14.4 TL
+ET
+0.611765 0.2 0.180392 rg
+n
+0 760 595 82 re
+f*
+1 1 1 rg
+BT
+/F2 20 Tf
+24 TL
+ET
+BT
+1 0 0 1 45 795 Tm
+(FIKTIVER BEISPIELBELEG) Tj
+T*
+ET
+0.2 0.168627 0.160784 rg
+BT
+/F1 12 Tf
+14.4 TL
+ET
+BT
+1 0 0 1 45 710 Tm
+(Belegnummer\072 LB\055FIK\0552026\055025) Tj
+T*
+ET
+BT
+1 0 0 1 45 680 Tm
+(Belegdatum\072 28\05609\0562026) Tj
+T*
+ET
+BT
+1 0 0 1 45 650 Tm
+(Buchungstext\072 Waren \046 Zutaten Lieferanten) Tj
+T*
+ET
+BT
+1 0 0 1 45 610 Tm
+(Gesamtbetrag\072 22\056300\05400 EUR) Tj
+T*
+ET
+BT
+1 0 0 1 45 560 Tm
+(Nur fuer die Vorfuehrung\072 alle Angaben sind frei erfunden\056) Tj
+T*
+ET
+
+endstream
+endobj
+6 0 obj
+<<
+/F1 7 0 R
+/F2 8 0 R
+>>
+endobj
+7 0 obj
+<<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+8 0 obj
+<<
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000157 00000 n 
+0000000216 00000 n 
+0000000265 00000 n 
+0000000464 00000 n 
+0000001118 00000 n 
+0000001159 00000 n 
+0000001266 00000 n 
+trailer
+<<
+/Size 9
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+1378
+%%EOF

@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0B1016">
+<title>Monatsbüro – Snackautomatenbetrieb</title>
+<style>
+:root{--ink:#332b29;--muted:#766c68;--red:#bd443d;--red-dark:#9c332e;--line:#e9dfdc;--paper:#fff;--bg:#faf7f5;--amber:#80572d}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--bg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}header{background:#fff;border-bottom:1px solid var(--line);padding:14px max(22px,calc((100vw - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px;font-weight:750;letter-spacing:-.02em}.brand img{width:44px;height:38px;object-fit:contain}.local{font-size:.88rem;color:#86514b;background:#f8eeeb;padding:6px 10px;border-radius:20px}main{max-width:1100px;margin:auto;padding:35px 22px 60px}.eyebrow{font-size:.85rem;color:var(--muted);margin:0 0 6px}h1{font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:0}h2{font-size:1.17rem;margin:0 0 14px}.intro{color:var(--muted);max-width:670px;margin:12px 0 25px}.callout{background:#f7eeeb;border:1px solid #edddd9;border-radius:13px;padding:15px 18px;margin:20px 0 27px}.callout strong{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;min-height:154px;display:flex;flex-direction:column;align-items:flex-start}.card-top{display:flex;align-items:center;gap:10px;margin-bottom:7px}.icon{width:34px;height:34px;border-radius:10px;background:#f8efec;color:var(--red-dark);display:grid;place-items:center;font-size:1.1rem}.card h2{margin:0}.card p{color:var(--muted);margin:0 0 14px;font-size:.94rem}.status{font-size:.82rem;color:var(--amber);margin-top:auto}.foot{font-size:.86rem;color:var(--muted);margin-top:25px}.foot strong{color:var(--ink)}button{font:inherit;border:0;border-radius:8px;background:var(--red);color:white;padding:11px 15px;cursor:pointer}button:hover{background:var(--red-dark)}button:focus-visible{outline:3px solid #e3a39c;outline-offset:2px}.sample{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}.sample-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.sample p{color:var(--muted);margin:0 0 16px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:530px}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line)}th{font-size:.84rem;color:var(--muted)}.result{margin-top:15px;background:#fbf5eb;border-radius:9px;padding:13px 15px;color:#70491d}.result.ok{background:#f0f5ef;color:#456541}.result ul{margin:8px 0 0;padding-left:20px}.hidden{display:none!important}@media(max-width:680px){header{padding:12px 18px}main{padding:27px 16px 45px}.grid{grid-template-columns:1fr}.card{min-height:135px}}
+.small-action{padding:4px 9px;min-width:32px;min-height:32px;font-size:1.1rem;line-height:1;border:1px solid var(--line);background:#fff;color:var(--red-dark)}.small-action:hover{background:#f8efec}
+.heartbeat-button{width:48px;height:48px;padding:0;display:grid;place-items:center;font-size:1.35rem;line-height:1}
+.more-tasks>summary{cursor:pointer;color:var(--muted);font-weight:650;text-underline-offset:4px}.more-tasks>summary:hover{color:var(--ink)}
+.cashbook-month-picker{position:relative;margin:14px 0 18px}.cashbook-month-picker>summary{display:flex;align-items:center;gap:10px;width:max-content;max-width:100%;min-height:44px;padding:9px 15px;border:1px solid var(--blue);border-radius:10px;background:var(--raised);color:var(--blue);font-weight:750;cursor:pointer;list-style:none}.cashbook-month-picker>summary::-webkit-details-marker{display:none}.cashbook-month-picker>summary::after{content:"▾";transition:transform .18s ease}.cashbook-month-picker[open]>summary::after{transform:rotate(180deg)}.cashbook-months{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--raised)}.cashbook-months button{background:var(--raised);color:var(--ink);border:1px solid var(--line)}.cashbook-months button.active{background:var(--green);border-color:var(--green);color:var(--bg)}.cashbook-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.cashbook-summary>div{padding:14px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}.cashbook-summary span,.cashbook-summary strong{display:block}.cashbook-summary span{font-size:.85rem;color:var(--muted)}.cashbook-summary strong{font-size:1.2rem}.cashbook-note{font-size:.9rem}.cashbook-note input{max-width:120px}#cashbook-editor h3{font-size:1rem;margin:25px 0 8px}#cashbook-editor input{width:100%;min-width:105px;padding:7px;border:1px solid var(--line);border-radius:6px;font:inherit}#cashbook-editor td{padding:7px}#cashbook-editor table{min-width:650px}#cashbook-editor tfoot{background:#faf7f5}body.cashbook-view main>section.sample:not(:has(#cashbook-title)),body.cashbook-view main>details,body.cashbook-view main>.foot,body.cashbook-view main>.intro,body.cashbook-view main>.callout,body.cashbook-view main>.eyebrow,body.cashbook-view main>h1{display:none}body.cashbook-view main{max-width:1350px}body.cashbook-view #cashbook-title{scroll-margin-top:20px}@media(max-width:680px){.cashbook-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cashbook-group{border-radius:12px;padding:16px;margin:18px 0}.cashbook-group h3{margin:0 0 4px!important}.cashbook-group p{font-size:.88rem}.cashbook-income{background:#fff7d8}.cashbook-deposits{background:#e7f3e3}.cashbook-change{background:#e8f2f8}.cashbook-group table{background:#fff}.cashbook-group tfoot{font-weight:700}
+.timesheet-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.timesheet-meta label{display:grid;gap:5px;font-weight:600}.timesheet-meta input,.timesheet-table input{font:inherit;padding:8px;border:1px solid var(--line);border-radius:7px;min-width:0;width:100%}.timesheet-table{min-width:850px}.timesheet-table th,.timesheet-table td{padding:8px}.timesheet-table td:nth-child(5){font-weight:700;white-space:nowrap}@media(max-width:680px){.timesheet-meta{grid-template-columns:1fr}}
+.demo-archive{margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:11px;background:var(--bg)}.demo-archive h3{font-size:1rem;margin:0 0 8px}.demo-archive #demo-archive-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.demo-archive details{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 11px;min-width:0}.demo-archive summary{cursor:pointer;font-weight:650}.demo-archive ul{margin:8px 0 0;padding-left:18px;overflow-wrap:anywhere;font-size:.85rem}.demo-archive button{margin-top:12px}@media(max-width:680px){.demo-archive #demo-archive-list{grid-template-columns:1fr}}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px;padding:0;list-style:none}.steps a{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-decoration:none;color:var(--ink);font-size:.9rem}.steps a:hover{border-color:#d49b93}.step-number{display:inline-grid;place-items:center;flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:#f8eeeb;color:var(--red-dark);font-weight:750;font-size:.86rem}.step-title{display:flex;align-items:center;gap:10px;margin-bottom:14px}.step-title h2{margin:0}.sample button:disabled{background:#e7dfdc;color:#756c68;cursor:not-allowed}.sample button:disabled:hover{background:#e7dfdc}.sample input[type=file]{max-width:100%;font:inherit}.sample input[type=file]::file-selector-button{font:inherit;background:#f8eeeb;color:var(--red-dark);border:1px solid #e8d4d0;border-radius:8px;padding:9px 12px;margin-right:10px;cursor:pointer}.sample a:not(.status){color:var(--red-dark);text-underline-offset:3px}.file-box{padding:15px;background:#faf7f5;border:1px solid var(--line);border-radius:10px}.file-box label{display:block;font-weight:650;margin-bottom:8px}.file-box input{display:block;width:100%}.action-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.action-group button{max-width:100%}.secondary,#demo-mhd-xlsx,#demo-mhd-pdf{background:#f8eeeb;color:var(--red-dark);border:1px solid #e8d4d0}.secondary:hover,#demo-mhd-xlsx:hover,#demo-mhd-pdf:hover{background:#f2ded9}#demo-components{padding-left:24px;line-height:1.8}#demo-final-status{margin-top:14px}#demo-final-status:empty,#demo-shot-status:empty{display:none}.review-hint{font-size:.9rem}@media(max-width:680px){.steps{display:grid;grid-template-columns:1fr;gap:7px}.steps a{padding:8px 10px}.sample{padding:18px}.action-group{display:grid;grid-template-columns:1fr}.action-group button{width:100%}#demo-components{padding-left:20px}}
+.agent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.agent-step,.eval-case{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--raised)}.agent-step{display:grid;grid-template-columns:auto 1fr;gap:5px 10px;align-items:start}.agent-step .state{font-weight:800;color:var(--amber)}.agent-step[data-state="done"] .state{color:var(--green)}.agent-step[data-state="active"] .state{color:var(--blue)}.agent-step strong,.agent-step small{display:block}.agent-step small{color:var(--muted);margin-top:2px}.agent-trace{max-height:240px;overflow:auto;padding-left:20px}.agent-trace li{margin:5px 0;color:var(--muted)}.agent-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}.agent-metrics>div{padding:12px;border:1px solid var(--line);border-radius:9px;background:var(--paper)}.agent-metrics span,.agent-metrics strong{display:block}.agent-metrics span{font-size:.82rem;color:var(--muted)}.agent-metrics strong{font-size:1.1rem}.eval-list{display:grid;gap:7px;margin:12px 0 0;padding:0;list-style:none}.eval-case{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.eval-case small{display:block;color:var(--muted);margin-top:3px}.eval-case [data-pass="true"]{color:var(--green);font-weight:800}.eval-case [data-pass="false"]{color:#ff8b8b;font-weight:800}.eval-note{font-size:.88rem;color:var(--muted)}@media(max-width:680px){.agent-grid,.agent-metrics{grid-template-columns:1fr}}
+.agent-subdropdown{margin:14px 0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--raised)}.agent-subdropdown>summary{cursor:pointer;padding:12px 14px;color:var(--blue);font-weight:700}.agent-subdropdown[open]>summary{border-bottom:1px solid var(--line)}.agent-subdropdown-body{padding:0 14px 14px}#demo-components{margin:0 0 16px}#demo-components li{padding:2px 0}#demo-final-format-wrap{display:grid;gap:4px;font-weight:650;min-width:220px}#demo-final-format-wrap select{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--raised);color:var(--ink)}#demo-final-download[hidden]~#demo-final-format-wrap,#demo-final-download[hidden]~#demo-final-format-note{display:none}#demo-final-format-note{flex-basis:100%;color:var(--muted);font-size:.82rem}#ai-match{display:none!important}</style>
+<link rel="stylesheet" href="theme-dark.css?v=6">
+<style>
+.main-menu{margin:0 0 8px}.main-menu-dropdown{position:relative;width:max-content;max-width:100%;z-index:5}
+.main-menu-dropdown>summary{display:flex;align-items:center;gap:10px;min-height:44px;padding:9px 15px;border:1px solid var(--blue);border-radius:10px;background:var(--raised);color:var(--blue);font-weight:750;cursor:pointer;list-style:none}
+.main-menu-dropdown>summary::-webkit-details-marker{display:none}.main-menu-dropdown>summary::after{content:"▾";font-size:.9rem;transition:transform .18s ease}
+.main-menu-dropdown[open]>summary::after{transform:rotate(180deg)}
+.main-menu-dropdown>.steps{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--raised);box-shadow:0 12px 30px rgba(0,0,0,.22)}
+</style>
+</head>
+<body>
+<header><div class="brand"><img src="zelunavo-logo.svg?v=2" alt=""><span>Zelunavo</span></div><div class="local">● Lokaler Prototyp</div></header>
+<main>
+<p class="eyebrow">ZELUNAVO · ÜBERSICHT</p><h1>Monatsunterlagen</h1>
+<nav class="main-menu" aria-label="Hauptmenü"><details class="main-menu-dropdown"><summary>☰ Menü</summary><ol class="steps"><li><a href="#month-title">Kontoauszug</a></li><li><a href="#cashbook-title">Kassenbuch</a></li><li><a href="#mhd-form-title">MHD-Liste</a></li><li><a href="#timesheet-title">Stundenzettel</a></li><li><a href="#agent-run-title">Agentenlauf</a></li><li><a href="#final-title">Abschluss-PDF</a></li></ol></details></nav>
+<section class="sample" aria-labelledby="month-title"><div class="step-title"><span class="step-number" aria-hidden="true">1</span><h2 id="month-title">Kontoauszug & Belege</h2></div>
+<div style="display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:16px 0">
+<select id="month" hidden aria-hidden="true" tabindex="-1"></select>
+<div class="file-box"><label for="statement">Kontoauszug als PDF auswählen</label><input id="statement" type="file" accept="application/pdf,.pdf"></div><button id="demo-heartbeat" class="secondary heartbeat-button" type="button" aria-label="Demo-Heartbeat auslösen" title="Demo-Heartbeat">♥</button>
+</div>
+
+<div id="file-note" class="result hidden" aria-live="polite"></div><div id="pdf-details" hidden><pre id="pdf-text" class="hidden" style="white-space:pre-wrap;overflow:auto;max-height:300px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:16px;margin-top:10px;font:14px/1.6 ui-monospace,monospace"></pre></div>
+<div id="review-wrap" class="hidden" style="margin-top:20px"><h2>Buchungen aus dem PDF prüfen</h2><button id="ai-match" class="secondary" type="button" hidden>Mit Qwen prüfen</button><p id="ai-match-status" aria-live="polite"></p><div id="review-table" class="table-wrap"></div><div id="unread-lines" class="result hidden"></div><input id="extra-invoice" type="file" accept="application/pdf,.pdf" hidden><button id="confirm-statement" type="button" style="margin-top:12px">Buchungsliste bestätigen</button><div id="statement-result" class="result hidden" aria-live="polite"></div></div></section>
+<section class="sample" aria-labelledby="cashbook-title"><div class="step-title"><span class="step-number">2</span><h2 id="cashbook-title">Kassenbuch</h2></div><div id="cashbook-editor"></div><div class="action-group"><button id="cashbook-add-expense" class="secondary" type="button">+ Ausgabe</button></div><p id="cashbook-status" class="hidden" aria-live="polite">Fiktive Beispieldaten, lokal in diesem Browser gespeichert.</p></section>
+<section class="sample" aria-labelledby="mhd-form-title"><div class="step-title"><span class="step-number" aria-hidden="true">3</span><h2 id="mhd-form-title">MHD-Liste vorbereiten</h2></div><div class="file-box"><label for="demo-shot">WhatsApp-Chat-Screenshot auswählen</label><input id="demo-shot" type="file" accept="image/png,image/jpeg"></div><p id="demo-shot-status" aria-live="polite"></p><div id="demo-mhd-table" class="table-wrap"></div><div class="action-group"><button id="demo-mhd-apply" class="secondary" type="button" hidden>Korrekturen übernehmen</button><button id="demo-mhd-xlsx" type="button" hidden>MHD-Excel herunterladen</button><button id="demo-mhd-pdf" type="button" hidden>MHD-PDF herunterladen</button></div></section>
+<section class="sample" aria-labelledby="timesheet-title" id="timesheet-section"><div class="step-title"><span class="step-number" aria-hidden="true">4</span><h2 id="timesheet-title">Eigenen Stundenzettel erstellen</h2></div><div id="timesheet-editor"></div><div class="action-group"><button id="timesheet-add" class="secondary" type="button">+ Arbeitstag</button><button id="timesheet-save" type="button">Fertig – zum Abschluss hinzufügen</button><button id="timesheet-download" class="secondary" type="button">Stundenzettel-PDF herunterladen</button></div><p id="timesheet-status" aria-live="polite">Noch keine eigenen Arbeitszeiten eingetragen.</p></section>
+<section class="sample" aria-labelledby="agent-run-title"><div class="step-title" id="agent-run-title"><span class="step-number" aria-hidden="true">5</span><h2>Agentenlauf &amp; Ergebnisprüfung</h2></div><div class="agent-grid" id="agent-steps"><div class="agent-step" data-step="statement" data-state="waiting"><span class="state">○</span><div><strong>Kontoauszug lesen</strong><small>Wartet auf den fiktiven Kontoauszug.</small></div></div><div class="agent-step" data-step="invoices" data-state="waiting"><span class="state">○</span><div><strong>Buchungen und Belege abgleichen</strong><small>Wartet auf das Einlesen der Buchungen.</small></div></div><div class="agent-step" data-step="cashbook" data-state="waiting"><span class="state">○</span><div><strong>Automatenberichte und Kassenbuch prüfen</strong><small>Wartet auf den Monatsabgleich.</small></div></div><div class="agent-step" data-step="mhd" data-state="waiting"><span class="state">○</span><div><strong>MHD-Liste lesen und validieren</strong><small>Wartet auf den fiktiven Screenshot.</small></div></div><div class="agent-step" data-step="assembly" data-state="waiting"><span class="state">○</span><div><strong>Abschlussunterlagen zusammenstellen</strong><small>Wartet auf die bestätigten Eingaben.</small></div></div></div><ol id="demo-components" hidden><li>Kassenbuch – wartet auf die bestätigte Buchungsliste</li><li>MHD-Liste – wartet auf den fiktiven Screenshot</li><li>Vendon-Verkaufsbericht – fiktiver PDF-Export</li><li>Stundenzettel – simulierte Gmail-Suche</li><li>Kontoauszug – bitte auswählen</li><li>Rechnungen – simulierte Gmail-Suche</li></ol><details class="agent-subdropdown"><summary>Messwerte, Protokoll und Prüfergebnisse anzeigen</summary><div class="agent-subdropdown-body"><div class="agent-metrics" aria-label="Messwerte des aktuellen Laufs"><div><span>Buchungen erkannt</span><strong id="metric-bookings">–</strong></div><div><span>Belege zugeordnet</span><strong id="metric-invoices">–</strong></div><div><span>Automatenberichte</span><strong id="metric-reports">–</strong></div><div><span>Kassenbestand</span><strong id="metric-cash">–</strong></div><div><span>MHD-Zeilen geprüft</span><strong id="metric-mhd">–</strong></div><div><span>PDF-Seiten</span><strong id="metric-pages">–</strong></div></div><details><summary>Laufprotokoll anzeigen</summary><ol class="agent-trace" id="agent-trace" aria-live="polite"><li>Noch kein Lauf gestartet. Lade einen fiktiven Kontoauszug.</li></ol></details><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><h3>Fiktiver Prüfsatz</h3><div class="action-group"><button id="run-rule-benchmark" class="secondary" type="button">Regelwerk mit Prüffällen testen</button><button id="run-qwen-benchmark" class="secondary" type="button" hidden>Qwen lokal mit Prüffällen testen</button></div><p id="evaluation-summary" class="result" aria-live="polite">Noch kein Prüflauf ausgeführt.</p><ul id="evaluation-results" class="eval-list"></ul></div></details></section>
+<section id="final-section" class="sample" aria-labelledby="final-title"><div class="step-title"><span class="step-number" aria-hidden="true">6</span><h2 id="final-title">Abschluss-PDF erstellen</h2></div><p class="status" id="final-status" aria-live="polite"></p><div id="final-list" hidden></div><div id="abschluss-local"></div><p id="demo-final-status" aria-live="polite"></p><div class="action-group"><button id="demo-final-create" type="button" disabled>Abschluss-PDF erstellen</button><button id="demo-final-download" type="button" hidden>Ausgewähltes Format herunterladen</button><button id="demo-cashbook-open" class="secondary" type="button" hidden>Kassenbuch</button><label id="demo-final-format-wrap" for="demo-final-format">Downloadformat<select id="demo-final-format"><option value="pdf">PDF · vollständige Unterlagen</option><option value="xlsx">Excel · Monatsübersicht</option><option value="csv">CSV · Monatsübersicht</option></select></label></div></section>
+
+
+
+
+</main>
+<input id="month-package" type="file" accept=".zip,application/zip" hidden aria-hidden="true" tabindex="-1">
+<script src="demo-data.js?v=3"></script><script src="demo-kassenbuch.js?v=4"></script><script src="demo-automatendaten.js?v=2"></script><script src="demo-sales-reports.js?v=1"></script><script src="demo-sources.js?v=8"></script><script src="agent-evaluation-cases.js?v=2"></script><script src="jszip.min.js"></script><script src="pdf-lib.min.js"></script><script src="month-package.js?v=9"></script><script src="cashbook-v3.js?v=26"></script><script src="local-ai.js?v=3"></script><script defer src="theme-nav.js?v=3"></script><script defer src="timesheet-ui.js?v=8"></script><script defer src="demo-archive.js?v=3"></script><script defer src="demo_workflow.js?v=41"></script><script src="agent-run.js?v=12"></script><script src="demo-october-autoload.js?v=3"></script>
+<script type="module">
+import * as pdfjs from './vendor/pdfjs-6.5.438/pdf.mjs';
+pdfjs.GlobalWorkerOptions.workerSrc = './vendor/pdfjs-6.5.438/pdf.worker.mjs';
+
+const $ = selector => document.querySelector(selector);
+const dataMode = () => document.querySelector('meta[name="zelunavo-data-mode"]')?.content || 'demo';
+const euro = cents => new Intl.NumberFormat('de-DE', {style:'currency', currency:'EUR'}).format(cents / 100);
+const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const demoFiles = [...Array.from({length:6},(_,i)=>`Zelunavo_Rechnung_Mai_2026_LB-FIK-2026-${String(301+i).padStart(3,'0')}.pdf`), ...months.slice(5,9).flatMap((name, index) => Array.from({length:6}, (_, offset) => `Zelunavo_Rechnung_${name}_2026_LB-FIK-2026-${String(index*6+1+offset).padStart(3,'0')}.pdf`)), ...['025','026'].map(number=>`Zelunavo_Rechnung_September_2026_LB-FIK-2026-${number}.pdf`)];
+const amountRx = /[+-]?\s*\d{1,3}(?:[.\s]\d{3})*,\d{2}|[+-]?\s*\d+,\d{2}/g;
+let bookings = [], invoices = [], resolutions = new Map(), aiChecks = new Map(), uploadIndex = null, uploadMode = 'invoice', statementName = '';
+
+for (let year=2026; year<=2028; year++) for (let m=0; m<12; m++) {
+  const option=document.createElement('option'); option.value=`${year}-${String(m+1).padStart(2,'0')}`;
+  option.textContent=`${months[m]} ${year}`; if(year===2026&&m===8) option.selected=true; $('#month').append(option);
+}
+window.dispatchEvent(new Event('zelunavo:month-options-ready'));
+function inferStatementMonth(filename) {
+  const match=String(filename).match(/(Januar|Februar|März|Maerz|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)[ _-]+(20\d{2})/i);
+  if(match){const monthName=match[1].toLocaleLowerCase('de-DE');const index=months.findIndex(name=>name.toLocaleLowerCase('de-DE')===monthName||(name==='März'&&monthName==='maerz'));if(index>=0)return `${match[2]}-${String(index+1).padStart(2,'0')}`}
+  const numeric=String(filename).match(/(20\d{2})[-_](0[1-9]|1[0-2])/);return numeric?`${numeric[1]}-${numeric[2]}`:null;
+}
+function amount(value) {
+  const cleaned=String(value).replace(/[€\s]/g,'').replace(/\./g,'');
+  if(!/^[+-]?\d+,\d{2}$/.test(cleaned)) return null;
+  return Math.round(Number(cleaned.replace(',','.'))*100);
+}
+async function rowsOf(file) {
+  const pdf=await pdfjs.getDocument({data:new Uint8Array(await file.arrayBuffer()),disableWorker:true}).promise;
+  const pages=[];
+  for(let pageNo=1;pageNo<=pdf.numPages;pageNo++) {
+    const pdfPage=await pdf.getPage(pageNo),content=await pdfPage.getTextContent(),viewport=pdfPage.getViewport({scale:1}),byY=new Map();
+    for(const item of content.items) {
+      if(!item.str?.trim()||!item.transform)continue;
+      const y=Math.round(item.transform[5]); if(!byY.has(y))byY.set(y,[]);
+      byY.get(y).push({x:item.transform[4],text:item.str});
+    }
+    const rows=[...byY.entries()].sort((a,b)=>b[0]-a[0]).map(([y,items])=>({y,items:items.sort((a,b)=>a.x-b.x)}));
+    rows.width=viewport.width;rows.height=viewport.height;pages.push(rows);
+  }
+  return pages;
+}
+async function loadAutomatenberichte(month,force=false) {
+  const dataMode=document.querySelector('meta[name="zelunavo-data-mode"]')?.content||'demo';
+  if(dataMode==='work'&&document.querySelector('meta[name="local-token"]'))return window.loadLocalCashSales?.(month,force);
+  const reports=window.zelunavoDemoSources?.automation?.reportsFor(month)||[];
+  const status=document.querySelector('#automata-source-status');
+  if(reports.length!==6){if(status){status.textContent='Für diesen Monat fehlen fiktive Automatenberichte.';status.classList.remove('hidden')}return}
+  if(status){status.textContent='';status.classList.add('hidden')}
+  try {
+    const values=[];
+    for(const report of reports) {
+      let bytes;
+      if(report.file)bytes=await report.file.arrayBuffer();
+      else try {const response=await fetch(report.path);if(!response.ok)throw Error('Bericht fehlt');bytes=await response.arrayBuffer()}
+      catch {if(!report.base64)throw Error(`${report.machine}: Bericht fehlt.`);bytes=Uint8Array.from(atob(report.base64),char=>char.charCodeAt(0))}
+      const pages=await rowsOf(new Blob([bytes],{type:'application/pdf'}));
+      const lines=pages.flatMap(page=>page.map(row=>row.items.map(item=>item.text).join(' ')));
+      if(!lines.some(line=>line.includes(report.machine)))throw Error(`${report.machine}: Automatenname passt nicht.`);
+      const compact=value=>value.toLocaleUpperCase('de-DE').replace(/\s+/g,'');
+      const labeledAmount=label=>{
+        const line=lines.find(value=>compact(value).includes(label));
+        if(!line)return null;
+        let normalized='',offsets=[];
+        for(let index=0;index<line.length;index++)if(!/\s/.test(line[index])){normalized+=line[index].toLocaleUpperCase('de-DE');offsets.push(index)}
+        const labelStart=normalized.indexOf(label);
+        const start=labelStart<0?0:offsets[labelStart+label.length-1]+1;
+        const matches=[...line.slice(start).matchAll(amountRx)];
+        return matches.length?amount(matches[0][0]):null;
+      };
+      let coins=labeledAmount('MÜNZENKASSE');
+      let bills=labeledAmount('SCHEINEKASSETTE');
+      let total=labeledAmount('SUMMEMÜNZE+SCHEINE');
+      if(coins===null||bills===null||total===null){
+        const summary=lines.find(line=>line.includes('Monatssumme'));
+        const amounts=[...(summary||'').matchAll(amountRx)].map(match=>amount(match[0]));
+        [coins,bills,total]=amounts;
+      }
+      if([coins,bills,total].some(value=>value===null)||coins+bills!==total)throw Error(`${report.machine}: Münzen und Scheine stimmen nicht mit dem Barumsatz überein.`);
+      values.push({name:report.machine,cents:total,coinsCents:coins,billsCents:bills,sourcePath:report.path});
+    }
+    const changed=window.setCashbookIncome?.(month,values,force);
+    if(status){status.textContent=changed===false?'Manuell bearbeitete Barumsätze bleiben erhalten.':'';status.classList.toggle('hidden',changed!==false)}
+  } catch(error) {if(status){status.textContent=`Fiktive Automatenberichte konnten nicht gelesen werden: ${error.message}`;status.classList.remove('hidden')}}
+}
+window.loadAutomatenberichte=loadAutomatenberichte;
+
+function parseStatement(pages) {
+  const found=[],unread=[],dateRx=/(?<!\d)\d{2}[./]\d{2}[./]\d{4}(?!\d)/;
+  for(const page of pages) {
+    const header=page.find(row=>row.items.some(item=>/\bbetrag\b/i.test(item.text)));
+    const amountX=header?.items.find(item=>/\bbetrag\b/i.test(item.text))?.x;
+    const descriptionX=header?.items.find(item=>/erl[aä]uterung|verwendungszweck|empf[aä]nger/i.test(item.text))?.x;
+    const balanceX=header?.items.find(item=>/kontostand|kontoauszug|saldo/i.test(item.text))?.x ?? Infinity;
+    if(amountX===undefined){unread.push('Spalte „Betrag“ nicht gefunden.');continue}
+    const bookingDate=row=>{
+      const items=descriptionX===undefined?row.items.filter(item=>item.x<amountX-12):row.items.filter(item=>item.x<descriptionX-3);
+      return items.map(item=>item.text).join(' ').match(dateRx)?.[0]||null;
+    };
+    for(let i=page.indexOf(header)+1;i<page.length;i++) {
+      const row=page[i],line=row.items.map(item=>item.text).join(' '),date=bookingDate(row);
+      if(/monatsübersicht|monatsuebersicht/i.test(line))break;
+      if(!date)continue;
+      if(/anfangssaldo|endsaldo|saldo\s+vortrag/i.test(line))continue;
+      const aligned=page.filter(other=>Math.abs(other.y-row.y)<=3);
+      const figures=[...aligned.flatMap(other=>other.items.filter(item=>item.x>=amountX-12&&item.x<balanceX).map(item=>item.text)).join(' ').matchAll(amountRx)];
+      const cents=figures.length?amount(figures.at(-1)[0]):null;
+      let name=aligned.flatMap(other=>other.items.filter(item=>item.x<amountX-12).map(item=>item.text)).join(' ').replace(dateRx,' ').trim();
+      for(let j=i+1;j<page.length&&!bookingDate(page[j]);j++) {
+        if(/monatsübersicht|monatsuebersicht/i.test(page[j].items.map(item=>item.text).join(' ')))break;
+        if(Math.abs(page[j].y-row.y)<=3)continue;
+        const more=page[j].items.filter(item=>item.x<amountX-12).map(item=>item.text).join(' ').trim();
+        if(more&&!/buchungstag|empfänger|verwendungszweck|betrag|kontostand|kontoauszug|saldo/i.test(more))name+=' '+more;
+      }
+      name=name.replace(/\s+/g,' ').trim();
+      if(name&&cents!==null)found.push({date:date.replaceAll('/','.'),name,cents});else unread.push(line);
+    }
+  }
+  return {found,unread};
+}
+function invoiceAmount(text) {
+  const lines=text.split(/\r?\n/),label=/rechnungsbetrag|gutschriftbetrag|gesamtbetrag|endbetrag|zu zahlen|zahlbetrag|bruttobetrag|rechnungs.?summe|summe brutto/i,values=[];
+  for(let i=0;i<lines.length;i++)if(label.test(lines[i])){
+    const nearby=[lines[i],lines[i+1]||"",lines[i+2]||""].join(" ");
+    values.push(...[...nearby.matchAll(amountRx)].map(match=>amount(match[0])).filter(value=>value!==null));
+  }
+  if(values.length)return values.at(-1);
+  const all=[...text.matchAll(amountRx)].map(match=>amount(match[0])).filter(value=>value!==null);
+  return all.length===1?all[0]:null;
+}
+function key(text) {
+  const month=months.findIndex(name=>new RegExp(name,'i').test(text)),year=text.match(/20\d{2}/)?.[0];
+  if(month>=0&&year)return `${year}-${String(month+1).padStart(2,'0')}`;
+  const date=text.match(/\b\d{1,2}[./](\d{1,2})[./](20\d{2})\b/);
+  return date?`${date[2]}-${date[1].padStart(2,'0')}`:null;
+}
+function words(text) {
+  return [...new Set((text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').match(/[a-z0-9]{4,}/g)||[])
+    .filter(word=>!['rechnung','rechnungsnummer','betrag','gesamtbetrag','gmbh','euro','fiktiv','zelunavo','verwendungszweck','zahlung','2026'].includes(word)))];
+}
+function invoiceWarnings(booking,invoice,sourceInvoices=invoices) {
+  const warnings=[];
+  const bankReferences=[...(String(booking.name||'').matchAll(/LB[-./ ]?FIK[-./ ]?20\d{2}[-./ ]?\d{3,}/gi))].map(match=>match[0].replace(/[^a-z0-9]/gi,'').toLowerCase());
+  const documentNumbers=(invoice.numbers||[invoice.number].filter(Boolean)).map(value=>String(value).replace(/[^a-z0-9]/gi,'').toLowerCase());
+  if(bankReferences.length&&documentNumbers.length&&!bankReferences.some(reference=>documentNumbers.includes(reference)))warnings.push('Rechnungsnummer widerspricht der Buchungsreferenz');
+  if(documentNumbers.length>1)warnings.push('Mehrere Rechnungsnummern in einer PDF');
+  const normalizedText=String(invoice.text||'').toLocaleLowerCase('de-DE');
+  if(booking.cents<0&&/\b(gutschrift|stornorechnung|credit note|storno)\b/i.test(normalizedText))warnings.push('Gutschrift oder Stornobeleg passt nicht zu einer Lastschrift');
+  if(/\b(storniert|entwertet|gegenstandslos|ungültig|ungueltig)\b/i.test(normalizedText))warnings.push('Beleg ist als ungültig oder storniert gekennzeichnet');
+  if(/\b(?:usd|chf|gbp)\b|\$/i.test(normalizedText))warnings.push('Fremdwährung muss manuell geprüft werden');
+  const labeledCents=pattern=>{
+    const lines=String(invoice.text||'').split(/\r?\n/);let value=null;
+    for(let i=0;i<lines.length;i++)if(pattern.test(lines[i])){
+      const own=[...lines[i].matchAll(amountRx)].map(match=>amount(match[0])).filter(item=>item!==null),nearby=own.length?own:[...(lines[i+1]||'').matchAll(amountRx)].map(match=>amount(match[0])).filter(item=>item!==null),values=nearby;
+      if(values.length)value=values.at(-1);
+    }
+    return value;
+  };
+  const net=labeledCents(/\b(?:zwischensumme|netto(?:betrag)?)\b/i),tax=labeledCents(/\b(?:umsatzsteuer|mehrwertsteuer|mwst|ust)\b/i),gross=labeledCents(/\b(?:gesamtbetrag|rechnungsbetrag|bruttobetrag|endbetrag|zahlbetrag)\b/i);
+  if(net!==null&&tax!==null&&gross!==null&&Math.abs(net+tax-gross)>1)warnings.push('Netto-, Steuer- und Bruttobetrag sind rechnerisch widersprüchlich');
+  const genericSupplierWords=new Set(['service','services','technikservice','lieferant','lieferanten','handel','betrieb','betriebe','gmbh','kg','ug','ag','deutschland','einkauf','rechnung','firma']);
+  const supplierTokens=words(invoice.supplier||'').filter(word=>!genericSupplierWords.has(word));
+  const bookingTokens=words(booking.name||'');
+  if(invoice.supplier&&supplierTokens.length&&!supplierTokens.some(word=>bookingTokens.includes(word)))warnings.push('Rechnungssteller passt nicht zum Buchungstext');
+  const dataMode=document.querySelector('meta[name="zelunavo-data-mode"]')?.content||'demo';
+  const expectedRecipient=(dataMode==='demo'?'zelunavo':String(window.zelunavoLocalBusinessName||'')).trim().toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const actualRecipient=String(invoice.recipient||'').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  if(expectedRecipient&&invoice.recipient&&!actualRecipient.includes(expectedRecipient))warnings.push('Rechnungsempfaenger passt nicht zum Unternehmen');
+  if(invoice.number&&sourceInvoices.some(other=>other!==invoice&&other.number===invoice.number))warnings.push(`Rechnungsnummer ${invoice.number} kommt mehrfach vor`);
+  return warnings;
+}
+function footerAmountByColumn(pages,side) {
+  for(let i=pages.length-1;i>=0;i--) {
+    const page=pages[i],width=page.width||612,height=page.height||792;
+    const lines=page.filter(row=>row.y<=height*0.3).map(row=>row.items.filter(item=>side==='left'?item.x<=width*0.55:item.x>=width*0.45).map(item=>item.text).join(' '));
+    const currencyValues=lines.filter(line=>/\bEUR\b|€/i.test(line)).flatMap(line=>[...line.matchAll(amountRx)].map(match=>amount(match[0])).filter(value=>value!==null));
+    const preferred=[...new Set(currencyValues)];
+    if(preferred.length===1)return preferred[0];
+    if(preferred.length>1)return null;
+    const values=lines.flatMap(line=>[...line.matchAll(amountRx)].map(match=>amount(match[0])).filter(value=>value!==null));
+    const unique=[...new Set(values)];
+    if(unique.length===1)return unique[0];
+    if(unique.length>1)return null;
+  }
+  return null;
+}
+function footerAmountFromBottomTable(pages) {
+  for(let i=pages.length-1;i>=0;i--) {
+    const page=pages[i],height=page.height||792;
+    const rows=page.filter(row=>row.y<=height*0.48).sort((a,b)=>a.y-b.y);
+    for(const row of rows) {
+      const line=row.items.map(item=>item.text).join(' ');
+      const values=[...line.matchAll(amountRx)].map(match=>amount(match[0])).filter(value=>value!==null);
+      if(values.length)return values.at(-1);
+    }
+  }
+  return null;
+}
+function invoiceParties(pages) {
+  const page=pages[0];if(!page)return {supplier:'',recipient:''};
+  const width=page.width||612;
+  const valueBelow=(label,side)=>{
+    const header=page.find(row=>row.items.some(item=>new RegExp(`^${label}$`,'i').test(item.text.trim())));
+    if(!header)return '';
+    const next=page.filter(row=>row.y<header.y&&header.y-row.y<=38&&row.items.length).sort((a,b)=>b.y-a.y)[0];
+    if(!next)return '';
+    const split=width*.49;
+    return next.items.filter(item=>side==='left'?item.x<split:item.x>=split).map(item=>item.text).join(' ').replace(/\s+/g,' ').trim();
+  };
+  let supplier=valueBelow('Rechnungssteller','left');
+  const recipient=valueBelow('Rechnungsempf(?:aenger|änger)','right');
+  if(/^fiktive?\s+rechnungsstellerangaben\b/i.test(supplier))supplier='';
+  return {supplier,recipient};
+}
+async function readInvoice(file,name=file.name) {
+  const pages=await rowsOf(file);
+  const text=pages.flatMap(page=>page.map(row=>row.items.map(item=>item.text).join(' '))).join('\n');
+  const numberMatches=[...text.matchAll(/(?:rechnungsnummer|rechnungsnr\.?|belegnummer)\s*[:#]?\s*([A-Z0-9][A-Z0-9/-]{4,})|\b(LB-FIK-20\d{2}-\d{3,})\b/gi)].map(match=>match[1]||match[2]);
+  const filenameNumber=name.match(/LB-FIK-20\d{2}-\d+/i)?.[0]||null;
+  const number=numberMatches[0]||filenameNumber;
+  const lines=text.split('\n'),dateIndex=lines.findIndex(line=>/rechnungsdatum|leistungszeitraum|rechnungsmonat/i.test(line));
+  const dateSnippet=dateIndex>=0?lines.slice(dateIndex,dateIndex+4).join(' '):'';
+  const invoiceDate=dateSnippet.match(/\b\d{1,2}[./]\d{1,2}[./]20\d{2}\b/)?.[0]||null;
+  const dateLine=dateIndex>=0?lines[dateIndex]:'';
+  // Erkenne bekannte Beleglayouts anhand der Position des Summenfelds,
+  // ohne konkrete Anbieter im öffentlichen Demo-Code zu benennen.
+  const footerCandidates=[
+    footerAmountByColumn(pages,'left'),
+    footerAmountByColumn(pages,'right'),
+    footerAmountFromBottomTable(pages)
+  ].filter(value=>value!==null);
+  const distinctFooterAmounts=[...new Set(footerCandidates)];
+  const footerAmount=distinctFooterAmounts.length===1?distinctFooterAmounts[0]:null;
+  const amountSource=footerAmount!==null?'footer-layout':'text-label';
+  const parties=invoiceParties(pages);
+  return {name,cents:footerAmount??invoiceAmount(text),amountSource,text,number,numbers:[...new Set([...numberMatches,...(filenameNumber?[filenameNumber]:[])])],supplier:parties.supplier,recipient:parties.recipient,invoiceDate,month:key(dateLine||'')||key(name),file};
+}
+async function loadDemoInvoices(month=$('#month').value) {
+  const loaded=[];
+  const dataMode=document.querySelector('meta[name="zelunavo-data-mode"]')?.content||'demo';
+  if(dataMode==='work'&&!Array.isArray(window.gmailInvoiceFiles))throw Error('Arbeitsmodus: Öffne zuerst die Gmail-Belegprüfung für diesen Monat. Demorechnungen bleiben ausgeschlossen.');
+  if(dataMode==='work'&&Array.isArray(window.gmailInvoiceFiles)){
+    for(const source of window.gmailInvoiceFiles){
+      try{
+        const bytes=Uint8Array.from(atob(source.data),char=>char.charCodeAt(0));
+        const invoice=await readInvoice(new Blob([bytes],{type:'application/pdf'}),source.name);
+        invoice.gmailReview=!!source.needsReview;invoice.gmailCategory=source.category||'';invoice.reviewReason=source.reason||'';loaded.push(invoice);
+      }catch(error){console.warn('Lokale Gmail-PDF konnte nicht gelesen werden:',source.name,error)}
+    }
+    invoices=loaded;
+    return;
+  }
+    const monthPackage=window.zelunavoMonthPackages?.[month];
+  const monthlyFiles=monthPackage?.invoices;
+  if(monthlyFiles){
+    const manualOnly=monthPackage.manualUploadOnly||[];
+    for(const file of monthlyFiles){if(manualOnly.some(reference=>file.name.includes(reference)))continue;try{loaded.push(await readInvoice(file,file.name))}catch(error){console.warn('Fiktive Monatsrechnung nicht lesbar:',file.name,error)}}
+    invoices=loaded;
+    if(!loaded.length)throw Error(`Im Monats-ZIP ${month} wurde keine lesbare Rechnung gefunden.`);
+    return;
+  }
+  for(const name of demoFiles) {
+    try {
+      const encoded=window.demoInvoiceData?.[name];
+      if(!encoded)continue;
+      const bytes=Uint8Array.from(atob(encoded),char=>char.charCodeAt(0));
+      loaded.push(await readInvoice(new Blob([bytes],{type:'application/pdf'}),name));
+    } catch(error) { /* An unreadable example stays out of the match list. */ }
+  }
+  invoices=loaded;
+  if(!loaded.length) $('#file-note').textContent+=' Automatische Rechnungssuche nicht verfügbar. Prüfe, ob demo-data.js neben der HTML-Datei liegt.';
+}
+function rankCandidates(booking,sourceInvoices=invoices,targetMonth=$('#month').value,excluded=new Set()) {
+  return sourceInvoices.filter(invoice=>!excluded.has(invoice.name)&&invoice.cents!==null&&Math.abs(invoice.cents)===Math.abs(booking.cents)).map(invoice=>{
+    const numberMatch=!!invoice.number&&booking.name.toLowerCase().includes(invoice.number.toLowerCase());
+    const shared=words(booking.name).filter(word=>words(invoice.text+' '+invoice.name).includes(word));
+    const sameMonth=invoice.month===targetMonth;
+    const differentMonth=!!invoice.month&&!sameMonth&&!numberMatch;
+    const warnings=invoiceWarnings(booking,invoice,sourceInvoices);
+    return {invoice,numberMatch,shared,sameMonth,differentMonth,warnings,score:(numberMatch?100:0)+shared.length*12+(sameMonth?5:0)};
+  }).filter(match=>!match.differentMonth).sort((a,b)=>b.score-a.score);
+}
+function candidates(booking) { return rankCandidates(booking); }
+function aiCandidates(booking) {
+  const bookingWords=words(booking.name), targetMonth=$('#month').value;
+  return invoices.filter(invoice=>!invoice.gmailReview||['rechnung','pruefen'].includes(invoice.gmailCategory)).map(invoice=>{
+    const allWords=words((invoice.text||'')+' '+invoice.name),numberMatch=!!invoice.number&&booking.name.toLowerCase().includes(invoice.number.toLowerCase());
+    const shared=bookingWords.filter(word=>allWords.includes(word));
+    const sameMonth=invoice.month===targetMonth;
+    const sameAmount=invoice.cents!==null&&Math.abs(invoice.cents)===Math.abs(booking.cents);
+    return {invoice,numberMatch,shared,sameMonth,sameAmount,score:(numberMatch?100:0)+shared.length*14+(sameAmount?8:0)+(sameMonth?5:0)};
+  }).sort((a,b)=>b.score-a.score);
+}
+const isCashDeposit=booking=>booking.cents>0&&!/\bscheck/i.test(booking.name)&&/\b(?:kasse\s+an\s+bank|(?:sb[\s-]*)?bar(?:geld)?[\s-]*einzahlung(?:en)?|(?:sb[\s-]*)?einzahlung(?:en)?[\s-]+(?:von[\s-]+)?bar(?:geld)?|sb[\s-]*einzahlung(?:en)?)\b/i.test(booking.name);
+function ruleResult(booking,sourceInvoices=invoices,targetMonth=$('#month').value,excluded=new Set()) {
+  if(isCashDeposit(booking))return {label:'Bargeldeinzahlung – ins Kassenbuch übernommen',invoice:null,done:true};
+  const hits=rankCandidates(booking,sourceInvoices,targetMonth,excluded),best=hits[0];
+  if(!best)return {label:'Kein passender Beleg gefunden',invoice:null,done:false};
+  if(hits[1]?.score===best.score)return {label:'Mehrere mögliche Belege – bitte prüfen',invoice:best.invoice,done:false};
+  if(best.warnings.length)return {label:`Prüfen: ${best.warnings.join(' · ')}`,invoice:best.invoice,done:false,warning:best.warnings.join(' · ')};
+  if(best.invoice.gmailReview){if(!best.numberMatch&&!best.shared.length)return {label:'Gmail-Beleg ohne passenden Buchungstext – nicht zugeordnet',invoice:null,done:false};return {label:`Gmail-Prüfvorschlag: ${best.invoice.name}`,invoice:best.invoice,done:false};}
+  if(best.numberMatch||best.shared.length)return {label:`Vorschlag: ${best.invoice.name}`,invoice:best.invoice,done:true};
+  return {label:`Unsicher: ${best.invoice.name}`,invoice:best.invoice,done:false};
+}
+function previouslyAssigned(index) {
+  const used=new Set();
+  for(let i=0;i<index;i++){const prior=resultFor(bookings[i],i,used);if(prior.done&&prior.invoice)used.add(prior.invoice.name)}
+  return used;
+}
+function notifyAiReview(){
+  const detail=bookings.map((booking,index)=>({index,date:booking.date,text:booking.name.slice(0,600),cents:booking.cents,candidates:aiCandidates(booking).map(hit=>({name:hit.invoice.name,cents:hit.invoice.cents===null?null:Math.abs(hit.invoice.cents),month:hit.invoice.month,invoice_date:hit.invoice.invoiceDate||'',number:hit.invoice.number||'',review:!!hit.invoice.gmailReview,text:hit.invoice.text.slice(0,450)}))})).filter(item=>!isCashDeposit(bookings[item.index])&&resolutions.get(item.index)?.kind!=='known-no-receipt'&&item.candidates.length);
+  window.dispatchEvent(new CustomEvent('zelunavo:statement-ready',{detail}));
+}
+function resultFor(booking,index,assigned=null) {
+  if(isCashDeposit(booking))return {label:'Bargeldeinzahlung – ins Kassenbuch übernommen',invoice:null,done:true};
+  const used=assigned||previouslyAssigned(index);
+  const manual=resolutions.get(index);
+  if(manual?.kind==='known-no-receipt')return {label:manual.reason||'Wiederkehrende Buchung – Nachweis wird nicht benötigt',invoice:null,done:true};
+  if(manual?.kind==='ignored')return {label:'Ignoriert',invoice:null,done:true};
+  if(manual?.kind==='physical')return {label:'Originalbeleg später in Papierform beilegen',invoice:null,done:true};
+  if(manual?.kind==='other-proof')return {label:`Sonstiger Nachweis hinzugefügt: ${manual.invoice.name}`,invoice:manual.invoice,done:true};
+  if(manual?.kind==='upload')return used.has(manual.invoice.name)?{label:`Beleg bereits einer anderen Buchung zugeordnet – bitte prüfen`,invoice:null,done:false}:{label:`Beleg ergänzt: ${manual.invoice.name}`,invoice:manual.invoice,done:true};
+  if(manual?.kind==='candidate')return used.has(manual.invoice.name)?{label:'Dieser Beleg ist bereits einer anderen Position zugeordnet.',invoice:null,done:false}:{label:`Beleg dieser Buchung zugeordnet: ${manual.invoice.name}`,invoice:manual.invoice,done:true};
+  const ai=aiChecks.get(index);
+  if(ai){
+    const match=aiCandidates(booking).find(hit=>hit.invoice.name===ai.invoice_name&&!used.has(hit.invoice.name));
+    if(!match){const rule=ruleResult(booking,invoices,$('#month').value,used);return rule.done?rule:{label:`Qwen: kein sicherer Beleg – ${ai.reason}`,invoice:null,done:false};}
+    const warnings=invoiceWarnings(booking,match.invoice,invoices);
+    if(warnings.length)return {label:`Qwen zur Prüfung: ${warnings.join(' · ')}`,invoice:match.invoice,done:false,warning:warnings.join(' · ')};
+    const trusted=ai.confidence==='hoch'&&(match.numberMatch||match.shared.length>0);
+    if(!trusted){const rule=ruleResult(booking,invoices,$('#month').value,used);if(rule.done)return rule;}
+    return {label:`Qwen ${trusted?'bestätigt':'unsicher'}: ${match.invoice.name} – ${ai.reason}`,invoice:match.invoice,done:trusted};
+  }
+  return ruleResult(booking,invoices,$('#month').value,used);
+}
+window.addEventListener('zelunavo:run-rule-benchmark',()=>{
+  const invoice=(name,number,month,text,cents)=>({name,number,month,text,cents});
+  const one=invoice('FIKTIV_Mai_Fjordmarkt_101.pdf','LB-FIK-2026-101','2026-05','Rechnung Fjordmarkt Nord Demo',485000);
+  const current=invoice('FIKTIV_Juni_Fjordmarkt_102.pdf','LB-FIK-2026-102','2026-06','Rechnung Fjordmarkt Nord Demo',485000);
+  const decoy=invoice('FIKTIV_Juni_Seeblick_103.pdf','LB-FIK-2026-103','2026-06','Rechnung Seeblick Handel Demo',485000);
+  const twinA=invoice('FIKTIV_Juli_Kiesel_201.pdf','LB-FIK-2026-201','2026-07','Rechnung Kiesel Einkauf Demo',7290);
+  const twinB=invoice('FIKTIV_Juli_Kiesel_202.pdf','LB-FIK-2026-202','2026-07','Rechnung Kiesel Einkauf Demo',7290);
+  const september=invoice('FIKTIV_September_Berglicht_301.pdf','LB-FIK-2026-301','2026-09','Rechnung Berglicht Bürobedarf Demo',12990);
+  const cases=[];
+  function check(id,title,booking,rows,month,expected,excluded=new Set()){
+    const result=ruleResult(booking,rows,month,excluded);
+    let passed=false,actual='';
+    if(expected.kind==='match'){passed=!!result.done&&result.invoice?.name===expected.name;actual=result.invoice?.name||'kein Treffer'}
+    else if(expected.kind==='ambiguous'){passed=!result.done&&result.label.includes('Mehrere mögliche');actual=result.label}
+    else if(expected.kind==='uncertain'){passed=!result.done&&result.label.startsWith('Unsicher:');actual=result.label}
+    else if(expected.kind==='missing'){passed=!result.done&&!result.invoice;actual=result.label}
+    else if(expected.kind==='deposit'){passed=result.done&&!result.invoice&&result.label.startsWith('Bargeldeinzahlung');actual=result.label}
+    cases.push({id,title,passed,expected:expected.name||expected.kind,actual});
+    return result;
+  }
+  check('cross-month','Gleicher Betrag: Juni-Text schlägt Mai-Kandidat',{date:'12.06.2026',name:'Fjordmarkt Nord LB-FIK-2026-102',cents:-485000},[one,current,decoy],'2026-06',{kind:'match',name:current.name});
+  check('number-ref','Vorperiodenbeleg bleibt mit passender Rechnungsnummer zulässig',{date:'12.06.2026',name:'Ausgleich LB-FIK-2026-101',cents:-485000},[one,current],'2026-06',{kind:'match',name:one.name});
+  check('ambiguous','Zwei gleich plausible Belege werden nicht automatisch bestätigt',{date:'18.07.2026',name:'Kiesel Einkauf',cents:-7290},[twinA,twinB],'2026-07',{kind:'ambiguous'});
+  check('amount-only','Gleicher Betrag ohne Textbezug bleibt unsicher',{date:'18.09.2026',name:'Unbekannter Branchenservice Auftrag',cents:-12990},[september],'2026-09',{kind:'uncertain'});
+  check('wrong-month','Beleg eines anderen Monats ohne Referenz wird ausgeschlossen',{date:'03.09.2026',name:'Berglicht Bürobedarf',cents:-485000},[one],'2026-09',{kind:'missing'});
+  check('wrong-amount','Abweichender Betrag wird ausgeschlossen',{date:'03.09.2026',name:'Berglicht Bürobedarf',cents:-13000},[september],'2026-09',{kind:'missing'});
+  check('missing','Fehlender Beleg blockiert die automatische Zuordnung',{date:'25.09.2026',name:'Werkstatt ohne Rechnung',cents:-6400},[],'2026-09',{kind:'missing'});
+  check('deposit','Kasse an Bank wird als Bargeldeinzahlung erkannt',{date:'26.09.2026',name:'Kasse an Bank',cents:50000},[september],'2026-09',{kind:'deposit'});
+  const first={date:'01.09.2026',name:'Berglicht Bürobedarf LB-FIK-2026-301',cents:-12990};
+  const second={date:'02.09.2026',name:'Berglicht Bürobedarf LB-FIK-2026-301',cents:-12990};
+  const firstResult=ruleResult(first,[september],'2026-09');
+  const uniqueResult=ruleResult(second,[september],'2026-09',new Set(firstResult.invoice?[firstResult.invoice.name]:[]));
+  cases.push({id:'no-reuse',title:'Eine Rechnung wird nicht zwei Buchungen zugeordnet',passed:!!firstResult.done&&!uniqueResult.done&&!uniqueResult.invoice,expected:'Beleg maximal einmal',actual:uniqueResult.invoice?.name||uniqueResult.label});
+  const integrityCases=[
+    {id:'reference-conflict',title:'Widersprüchliche Rechnungsnummer zur Bankreferenz',booking:{date:'18.09.2026',name:'Fjordmarkt Nord LB-FIK-2026-912',cents:-485000},invoice:invoice('Fjordmarkt_911.pdf','LB-FIK-2026-911','2026-09','Rechnung Fjordmarkt Nord LB-FIK-2026-911',485000),warning:'Buchungsreferenz'},
+    {id:'credit-note-on-debit',title:'Gutschrift zu einer Lastschrift offenhalten',booking:{date:'18.09.2026',name:'Fjordmarkt Nord Zutaten',cents:-485000},invoice:invoice('Fjordmarkt_Gutschrift.pdf','LB-FIK-2026-912','2026-09','Gutschrift Fjordmarkt Nord LB-FIK-2026-912 Gesamtbetrag 4.850,00 EUR',485000),warning:'Gutschrift'},
+    {id:'broken-tax-total',title:'Netto, Steuer und Brutto rechnerisch prüfen',booking:{date:'18.09.2026',name:'Fjordmarkt Nord Zutaten',cents:-490000},invoice:invoice('Fjordmarkt_Summenfehler.pdf','LB-FIK-2026-913','2026-09','Rechnung Fjordmarkt Nord LB-FIK-2026-913\nZwischensumme 4.000,00 EUR\nUmsatzsteuer 19% 760,00 EUR\nRechnungsbetrag 4.900,00 EUR',490000),warning:'rechnerisch widersprüchlich'},
+    {id:'foreign-currency',title:'Fremdwährung zur manuellen Prüfung zurückhalten',booking:{date:'18.09.2026',name:'Fjordmarkt Nord Zutaten',cents:-485000},invoice:invoice('Fjordmarkt_USD.pdf','LB-FIK-2026-914','2026-09','Rechnung Fjordmarkt Nord LB-FIK-2026-914 Gesamtbetrag 4.850,00 USD',485000),warning:'Fremdwährung'},
+    {id:'cancelled-invoice',title:'Ungültig markierte Rechnung nicht automatisch verwenden',booking:{date:'18.09.2026',name:'Fjordmarkt Nord Zutaten',cents:-485000},invoice:invoice('Fjordmarkt_Storno.pdf','LB-FIK-2026-915','2026-09','Rechnung Fjordmarkt Nord LB-FIK-2026-915 STORNIERT Gesamtbetrag 4.850,00 EUR',485000),warning:'storniert'},
+    {id:'multi-invoice-pdf',title:'PDF mit mehreren Rechnungsnummern mehrdeutig behandeln',booking:{date:'18.09.2026',name:'Fjordmarkt Nord Zutaten LB-FIK-2026-916',cents:-485000},invoice:Object.assign(invoice('Fjordmarkt_SammelPDF.pdf','LB-FIK-2026-916','2026-09','Rechnung Fjordmarkt Nord LB-FIK-2026-916 und LB-FIK-2026-917 Gesamtbetrag 4.850,00 EUR',485000),{numbers:['LB-FIK-2026-916','LB-FIK-2026-917']}),warning:'Mehrere Rechnungsnummern'}
+  ];
+  for(const fixture of integrityCases){
+    const result=ruleResult(fixture.booking,[fixture.invoice],'2026-09');
+    const passed=!result.done&&result.label.toLowerCase().includes(fixture.warning.toLowerCase());
+    cases.push({id:fixture.id,title:fixture.title,passed,expected:`Warnung: ${fixture.warning}`,actual:result.label});
+  }
+  for(const fixture of window.zelunavoEvaluationFixtures?.months||[]){
+    const priorMonth=`2026-${String(Number(fixture.month.slice(5))-1).padStart(2,'0')}`;
+    const right=invoice(`Zelunavo_Rechnung_${fixture.month}_${fixture.invoice}.pdf`,fixture.invoice,fixture.month,`Rechnung ${fixture.merchant} ${fixture.invoice}`,fixture.amount);
+    const wrongVendor=invoice(`Zelunavo_Rechnung_${fixture.month}_Falsch.pdf`,`LB-FIK-${fixture.month}-${fixture.invoice.slice(-3)}`,fixture.month,`Rechnung ${fixture.decoy}`,fixture.amount);
+    const prior=invoice(`Zelunavo_Rechnung_${priorMonth}_Vorperiode.pdf`,`LB-FIK-${priorMonth}-999`,priorMonth,`Rechnung ${fixture.merchant}`,fixture.amount);
+    const date=`15.${fixture.month.slice(5)}.2026`,book=(text,cents=-fixture.amount)=>({date,name:text,cents});
+    check(`${fixture.month}-same-month`,`Monatsfall ${fixture.month}: gleicher Betrag mit richtigem Lieferant`,book(`${fixture.merchant} ${fixture.invoice}`),[right,wrongVendor],fixture.month,{kind:'match',name:right.name});
+    check(`${fixture.month}-same-amount-wrong-vendor`,`Fehlerfall ${fixture.month}: gleicher Betrag, falscher Lieferant`,book(fixture.merchant),[wrongVendor],fixture.month,{kind:'uncertain'});
+    check(`${fixture.month}-prior-ref`,`Monatsfall ${fixture.month}: Vorperiodenbeleg mit expliziter Nummer`,book(`Ausgleich ${prior.number}`),[prior],fixture.month,{kind:'match',name:prior.name});
+    check(`${fixture.month}-prior-no-ref`,`Fehlerfall ${fixture.month}: Vorperiodenbeleg ohne Nummer`,book(fixture.merchant),[prior],fixture.month,{kind:'missing'});
+    check(`${fixture.month}-wrong-amount`,`Fehlerfall ${fixture.month}: falscher Rechnungsbetrag`,book(`${fixture.merchant} ${fixture.invoice}`,-fixture.amount-1),[right],fixture.month,{kind:'missing'});
+    check(`${fixture.month}-missing`,`Fehlerfall ${fixture.month}: fehlende Rechnung bleibt offen`,book(`${fixture.merchant} fehlender Beleg`),[],fixture.month,{kind:'missing'});
+    check(`${fixture.month}-deposit`,`Monatsfall ${fixture.month}: Kasse an Bank ohne Rechnungsbeleg`,{date,name:'Kasse an Bank',cents:fixture.amount},[right],fixture.month,{kind:'deposit'});
+    const firstMonthBooking=book(`${fixture.merchant} ${fixture.invoice}`),secondMonthBooking={...firstMonthBooking,date:`16.${fixture.month.slice(5)}.2026`};
+    const matched=ruleResult(firstMonthBooking,[right],fixture.month),duplicate=ruleResult(secondMonthBooking,[right],fixture.month,new Set(matched.invoice?[matched.invoice.name]:[]));
+    cases.push({id:`${fixture.month}-duplicate`,title:`Fehlerfall ${fixture.month}: doppelte Zuordnung blockiert`,passed:!!matched.done&&!duplicate.done&&!duplicate.invoice,expected:'ein Beleg nur einmal',actual:duplicate.invoice?.name||duplicate.label});
+  }
+  const passed=cases.filter(item=>item.passed).length;
+  window.dispatchEvent(new CustomEvent('zelunavo:rule-benchmark-results',{detail:{label:'Regelwerk · fiktiver Mehrmonats-Prüfsatz',passed,total:cases.length,results:cases.map(item=>({...item,detail:`Soll: ${item.expected} · Ist: ${item.actual}`}))}}));
+});
+window.dispatchEvent(new Event('zelunavo:run-rule-benchmark'));
+function render() {
+  const openBookings=bookings.map((booking,index)=>({booking,index,result:resultFor(booking,index)})).filter(item=>!item.result.done);
+  const openSummary=openBookings.length?`<section class="result open-booking-summary" aria-label="Offene Kontoauszugspositionen"><strong>${openBookings.length} offene Position(en) – Originaltext aus dem Kontoauszug</strong><ol>${openBookings.map(({booking,index,result})=>`<li><div><strong>Position ${index+1} · ${esc(booking.date)} · ${esc(euro(booking.cents))}</strong><br><span>${esc(booking.name)}</span><br><small>${esc(result.label)}</small></div><div><button type="button" class="small-action" data-action="upload" data-index="${index}" title="Rechnung lokal für diese Position hinzufügen" aria-label="Rechnung lokal für Position ${index+1} hinzufügen">＋ Rechnung</button><button type="button" class="small-action" data-action="other-upload" data-index="${index}" title="Sonstigen Nachweis wie Kassenzettel oder PayPal-Beleg lokal hinzufügen" aria-label="Sonstigen Nachweis für Position ${index+1} hinzufügen">＋ Kassenzettel / PayPal</button></div></li>`).join('')}</ol><small>Manuell bestätigte Monatsreferenzen werden lokal für künftige Qwen-Prüfungen verwendet.</small></section>`:`<p class="result open-booking-summary">Alle Kontoauszugspositionen sind geklärt.</p>`;
+  $('#review-table').innerHTML=`${openSummary}<table><thead><tr><th>Datum</th><th>Empfänger / Verwendungszweck</th><th>Buchungsbetrag</th><th>Belegstatus</th><th>Aktion</th></tr></thead><tbody>${bookings.map((booking,index)=>{
+    const result=resultFor(booking,index);
+    const accept=result.invoice?.gmailReview?`<button type="button" class="small-action" data-action="accept" title="Vorschlag übernehmen" aria-label="Vorschlag für Buchung ${index+1} übernehmen">✓</button>`:'';
+    const used=previouslyAssigned(index),linked=[...new Map([...rankCandidates(booking,invoices,$('#month').value,used),...aiCandidates(booking).filter(hit=>hit.invoice.gmailReview&&!used.has(hit.invoice.name))].filter(hit=>(hit.numberMatch||hit.shared.length>0)&&(hit.invoice.gmailReview||!result.done)).map(hit=>[hit.invoice.name,hit])).values()].slice(0,5);
+    const suggestions=linked.length?`<tr class="gmail-candidate-row" data-index="${index}"><td colspan="5"><strong>Kandidaten zu dieser Kontoauszugsposition:</strong><ul>${linked.map(hit=>{const invoiceIndex=invoices.indexOf(hit.invoice),relation=hit.numberMatch?'Rechnungsnummer im Buchungstext':`Textbezug: ${hit.shared.slice(0,4).map(esc).join(', ')}`;return `<li>${esc(hit.invoice.name)} · ${esc(hit.invoice.month||'Monat nicht erkannt')} · ${relation}${hit.invoice.reviewReason?`<br><small>${esc(hit.invoice.reviewReason)}</small>`:''} <button type="button" class="small-action" data-action="preview-candidate" data-invoice="${invoiceIndex}" title="PDF lokal prüfen">PDF prüfen</button> <button type="button" class="small-action" data-action="assign-candidate" data-invoice="${invoiceIndex}" title="Beleg dieser Position zuordnen">Zuordnen</button></li>`}).join('')}</ul></td></tr>`:'';
+    return `<tr class="booking-row" data-index="${index}"><td><input aria-label="Datum Buchung ${index+1}" value="${esc(booking.date)}"></td><td><input aria-label="Empfänger Buchung ${index+1}" value="${esc(booking.name)}" style="width:100%"></td><td><input aria-label="Betrag Buchung ${index+1}" value="${esc(euro(booking.cents))}" style="width:115px"></td><td>${esc(result.label)}${!result.warning&&result.invoice?.reviewReason?`<br><small>${esc(result.invoice.reviewReason)}</small>`:''}</td><td><div style="display:flex;gap:5px">${accept}<button type="button" class="small-action" data-action="ignore" title="Meldung ignorieren" aria-label="Meldung für Buchung ${index+1} ignorieren">×</button><button type="button" class="small-action" data-action="physical" title="Originalbeleg später in Papierform beilegen" aria-label="Originalbeleg für Buchung ${index+1} später in Papierform beilegen">Original</button><button type="button" class="small-action" data-action="upload" title="Beleg hinzufügen" aria-label="Beleg für Buchung ${index+1} hinzufügen">＋</button></div></td></tr>${suggestions}`;
+  }).join('')}</tbody></table>`;
+  const localGmailSummary=$('#gmail-review-summary');
+  if(localGmailSummary&&!localGmailSummary.classList.contains('hidden')&&invoices.some(invoice=>invoice.gmailReview)){
+    const uncertain=invoices.filter(invoice=>invoice.gmailReview),linkedNames=new Set();
+    bookings.forEach((booking,index)=>[...rankCandidates(booking,invoices,$('#month').value,previouslyAssigned(index)),...aiCandidates(booking).filter(hit=>hit.invoice.gmailReview)].filter(hit=>(hit.numberMatch||hit.shared.length>0)&&(hit.invoice.gmailReview||!resultFor(booking,index).done)).forEach(hit=>linkedNames.add(hit.invoice.name)));
+    localGmailSummary.textContent=`${linkedNames.size} Gmail-Prüfbeleg(e) haben Betrag und Buchungstext mit mindestens einer Kontoauszugsposition gemeinsam und erscheinen direkt darunter. ${Math.max(0,uncertain.length-linkedNames.size)} weitere PDF(s) haben keine eindeutige Positionszuordnung und werden nicht automatisch zugeordnet.`;
+  }
+  const open=bookings.filter((booking,index)=>!resultFor(booking,index).done).length;
+  $('#confirm-statement').disabled=!!open||!bookings.length;
+  $('#statement-result').classList.remove('hidden');
+  $('#statement-result').textContent=open?`${open} Buchung(en) sind noch ungeklärt. Lade einen Beleg hoch, merke einen Originalbeleg vor oder ignoriere die Meldung in der jeweiligen Zeile.`:'Alle Buchungen sind geklärt. Du kannst die Buchungsliste bestätigen.';
+}
+function syncEdits() {
+  const rows=[...$('#review-table tbody').querySelectorAll('tr.booking-row')],updated=[];
+  for(const [index,row] of rows.entries()) {
+    const inputs=row.querySelectorAll('input'),cents=amount(inputs[2].value);
+    if(!inputs[0].value.trim()||!inputs[1].value.trim()||cents===null)throw Error(`Buchung ${index+1}: Datum, Text oder Betrag ist ungültig.`);
+    updated.push({date:inputs[0].value.trim(),name:inputs[1].value.trim(),cents});
+  }
+  bookings=updated;
+}
+$('#review-table').addEventListener('change',event=>{
+  if(!event.target.matches('input'))return;
+  try {syncEdits();window.cashbookEnsureLocalMonth?.(month.value);window.setCashbookDeposits?.(month.value,bookings.filter(isCashDeposit));aiChecks.clear();render();notifyAiReview()}catch(error){$('#statement-result').textContent=error.message}
+});
+window.addEventListener('zelunavo:ai-matches',event=>{
+  aiChecks.clear();
+  for(const row of event.detail||[]){
+    if(!Number.isInteger(row.booking_index)||row.booking_index<0||row.booking_index>=bookings.length)continue;
+    aiChecks.set(row.booking_index,{invoice_name:String(row.invoice_name||''),confidence:String(row.confidence||''),reason:String(row.reason||'').slice(0,220)});
+  }
+  render();
+});
+$('#review-table').addEventListener('click',event=>{
+  const button=event.target.closest('button[data-action]');if(!button)return;
+  try {syncEdits()}catch(error){$('#statement-result').textContent=error.message;return}
+  const index=Number(button.dataset.index??button.closest('[data-index]')?.dataset.index);
+  if(button.dataset.action==='ignore'){resolutions.set(index,{kind:'ignored'});render()}
+  else if(button.dataset.action==='physical'){resolutions.set(index,{kind:'physical'});render()}
+  else if(button.dataset.action==='accept'){const result=resultFor(bookings[index],index);if(result.invoice)resolutions.set(index,{kind:'upload',invoice:result.invoice});render()}
+  else if(button.dataset.action==='assign-candidate'){const invoice=invoices[Number(button.dataset.invoice)];if(invoice)resolutions.set(index,{kind:'candidate',invoice});render()}
+  else if(button.dataset.action==='preview-candidate'){const invoice=invoices[Number(button.dataset.invoice)];if(invoice?.file){const url=URL.createObjectURL(invoice.file);window.open(url,'_blank','noopener');setTimeout(()=>URL.revokeObjectURL(url),60_000)}}
+  else {uploadIndex=index;uploadMode=button.dataset.action==='other-upload'?'other-proof':'invoice';$('#extra-invoice').click()}
+});
+$('#extra-invoice').addEventListener('change',async event=>{
+  const file=event.target.files?.[0];if(!file||uploadIndex===null)return;
+  try {if((dataMode()==='demo'&&!/(fiktiv|demo)/i.test(file.name))||(dataMode()==='work'&&/(fiktiv|demo)/i.test(file.name)))throw Error(dataMode()==='demo'?'Demomodus: Nur als FIKTIV/DEMO gekennzeichnete Belege verwenden.':'Arbeitsmodus: FIKTIV/DEMO-Belege sind gesperrt.');if(uploadMode==='other-proof'){resolutions.set(uploadIndex,{kind:'other-proof',invoice:{name:file.name,file,cents:null,text:'',month:$('#month').value}})}else{const invoice=await readInvoice(file);resolutions.set(uploadIndex,{kind:'upload',invoice})}render()}
+  catch(error){$('#statement-result').textContent=`Beleg konnte nicht gelesen werden: ${error.message}`}
+  event.target.value='';uploadIndex=null;
+});
+$('#statement').addEventListener('change',async event=>{
+  const file=event.target.files?.[0];if(!file)return;
+  window.dispatchEvent(new Event('zelunavo:reset'));
+  window.dispatchEvent(new Event('zelunavo:agent-start'));
+  $('#file-note').classList.add('hidden');$('#file-note').textContent='';
+  $('#review-wrap').classList.add('hidden');$('#final-list').replaceChildren();
+  try {
+    const inferredMonth=inferStatementMonth(file.name);if(inferredMonth&&[...$('#month').options].some(option=>option.value===inferredMonth))$('#month').value=inferredMonth;
+    const dataMode=document.querySelector('meta[name="zelunavo-data-mode"]')?.content||'demo';
+    statementName=file.name;resolutions.clear();aiChecks.clear();invoices=[];sessionStorage.removeItem('zelunavo-demo-order');$('#final-status').textContent='Noch keine Buchungsliste vorbereitet';
+    const pages=await window.zelunavoDemoSources.statement.read(file,rowsOf,month.value),parsed=parseStatement(pages);bookings=parsed.found;
+    if(dataMode==='demo')for(const rule of window.zelunavoMonthPackages?.[month.value]?.knownNoReceipt||[]){const index=bookings.findIndex(booking=>booking.date===rule.date&&booking.cents===rule.cents&&booking.name.toLocaleLowerCase('de-DE').includes(String(rule.contains||'').toLocaleLowerCase('de-DE')));if(index>=0)resolutions.set(index,{kind:'known-no-receipt',reason:rule.reason||'Für diese fiktive Monatsbuchung ist kein Rechnungsbeleg vorgesehen.'})}
+    if((dataMode==='demo'&&!/(fiktiv|demo)/i.test(file.name))||(dataMode==='work'&&/(fiktiv|demo)/i.test(file.name)))throw Error(dataMode==='demo'?'Demomodus: Nur ausdrücklich als FIKTIV/DEMO gekennzeichnete Kontoauszüge verwenden.':'Arbeitsmodus: FIKTIV/DEMO-Dateien sind gesperrt. Wechsle für fiktive Unterlagen in den Demomodus.');
+    const localToken=document.querySelector('meta[name="local-token"]')?.content;
+    if(localToken&&bookings.length){try{const response=await fetch('/api/bekannte-buchungen-pruefen',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':localToken},body:JSON.stringify({data_mode:dataMode,bookings:bookings.map((booking,index)=>({index,date:booking.date,text:booking.name}))})}),data=await response.json();if(response.ok)for(const item of data.matches||[])if(Number.isInteger(item.index)&&item.index>=0&&item.index<bookings.length)resolutions.set(item.index,{kind:'known-no-receipt',reason:item.reason})}catch{}}
+    const cashDeposits=bookings.filter(isCashDeposit);
+    if(dataMode==='demo')window.cashbookEnsureLocalMonth?.(month.value);
+    else window.cashbookEnsureLocalMonth?.(month.value,true);
+    window.cashbookSelectMonth?.(month.value);
+    window.setCashbookDeposits?.(month.value,cashDeposits);
+    await window.loadAutomatenberichte?.(month.value);
+    const display=pages.flatMap((page,i)=>[`Seite ${i+1}`, ...page.map(row=>row.items.map(item=>item.text).join(' '))]).join('\n');
+    $('#pdf-text').textContent=display;$('#pdf-text').classList.remove('hidden');$('#pdf-details').classList.remove('hidden');
+    const unread=$('#unread-lines');unread.classList.toggle('hidden',!parsed.unread.length);
+    unread.innerHTML=parsed.unread.length?`<strong>Bitte manuell prüfen: ${parsed.unread.length} Zeile(n)</strong><ul>${parsed.unread.map(line=>`<li>${esc(line)}</li>`).join('')}</ul>`:'';
+    await window.zelunavoDemoSources.invoices.find(month.value,loadDemoInvoices);$('#review-wrap').classList.remove('hidden');render();
+    notifyAiReview();
+    window.dispatchEvent(new CustomEvent('zelunavo:statement-loaded',{detail:{bookings:bookings.length,cashDeposits:cashDeposits.length,unread:parsed.unread.length,invoices:invoices.length}}));
+    $('#file-note').classList.add('hidden');
+  } catch(error) {$('#file-note').textContent=`PDF-Auslesen fehlgeschlagen: ${error.message}`;$('#file-note').classList.remove('hidden')}
+});
+window.zelunavoStatementHandlerReady=true;
+window.dispatchEvent(new Event('zelunavo:statement-handler-ready'));
+$('#confirm-statement').addEventListener('click',()=>{
+  try {syncEdits()}catch(error){$('#statement-result').textContent=error.message;return}
+  if(bookings.some((booking,index)=>!resultFor(booking,index).done)){render();return}
+  const prepared=bookings.map((booking,index)=>({booking,status:resultFor(booking,index),order:index+1}));
+  const localToken=document.querySelector('meta[name="local-token"]')?.content;
+  const learned=prepared.flatMap((item,index)=>{
+    const kind=resolutions.get(index)?.kind;
+    if(!['upload','candidate'].includes(kind)||!item.status.invoice)return [];
+    return [{kind:'invoice',booking_terms:words(item.booking.name).slice(0,24),invoice_terms:words(item.status.invoice.name+' '+item.status.invoice.text).slice(0,36)}];
+  }).filter(item=>item.booking_terms.length&&item.invoice_terms.length);
+  if(localToken&&learned.length)fetch('/api/ki/lernen',{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':localToken},body:JSON.stringify({data_mode:dataMode(),month:month.value,examples:learned})})
+    .then(response=>response.json().then(data=>({response,data})))
+    .then(({response,data})=>{if(response.ok&&data.ok)$('#statement-result').textContent+=` ${data.added} bestätigte Zuordnungsmuster wurden lokal für künftige Qwen-Läufe gespeichert.`})
+    .catch(()=>{});
+  window.dispatchEvent(new CustomEvent('zelunavo:confirmed',{detail:{month:month.value,statement:document.querySelector('#statement').files?.[0],items:prepared.map((item,index)=>({order:item.order,booking:{date:item.booking.date,name:item.booking.name,cents:item.booking.cents},name:item.status.invoice?.name||'',file:item.status.invoice?.file||null,kind:isCashDeposit(item.booking)?'deposit':resolutions.get(index)?.kind==='known-no-receipt'?'known-no-receipt':resolutions.get(index)?.kind==='ignored'?'ignored':resolutions.get(index)?.kind==='physical'?'physical':['upload','candidate','other-proof'].includes(resolutions.get(index)?.kind)?'manual':aiChecks.has(index)?'qwen':'automatic',label:item.status.label}))}}));
+  $('#final-section').classList.remove('hidden');$('#statement-result').textContent='Buchungsliste bestätigt. Die Reihenfolge ist für das Abschluss-PDF vorbereitet.';
+  $('#final-status').textContent=`${prepared.length} Buchung(en) in Kontoauszugsreihenfolge vorbereitet`;
+  sessionStorage.setItem('zelunavo-demo-order',JSON.stringify(prepared.map(item=>({order:item.order,date:item.booking.date,name:item.booking.name,invoice:item.status.invoice?.name||null,label:item.status.label}))));
+  $('#mhd-form-title').scrollIntoView({behavior:'smooth',block:'start'});
+});
+function eventWait(type,match=()=>true,timeout=90000){return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{window.removeEventListener(type,listener);reject(Error(`Zeitüberschreitung beim Schritt ${type}.`))},timeout);const listener=event=>{if(!match(event))return;clearTimeout(timer);window.removeEventListener(type,listener);resolve(event.detail||{})};window.addEventListener(type,listener)})}
+function assignDemoFile(input,file){const transfer=new DataTransfer();transfer.items.add(file);input.files=transfer.files;input.dispatchEvent(new Event('change',{bubbles:true}))}
+window.addEventListener('zelunavo:run-month-suite',async()=>{
+  const results=[],months=window.zelunavoDemoSources?.months||[];
+  const names={'05':'Mai','06':'Juni','07':'Juli','08':'August','09':'September','10':'Oktober'};
+  const add=(id,title,passed,expected,actual,detail='')=>results.push({id,title,passed,expected,actual,detail:detail||`Soll: ${expected} · Ist: ${actual}`});
+  const trigger=(id,title,fn)=>{try{const actual=fn();add(id,title,actual,`Fehler erkannt`,'Fehler erkannt');}catch(error){add(id,title,true,'Eingabe zurückgewiesen',error.message)}};
+  const run=document.getElementById('run-month-suite');if(run)run.disabled=true;
+  try {
+    for(const m of months){
+      const title=`${names[m.slice(5)]||new Intl.DateTimeFormat('de-DE',{month:'long',timeZone:'UTC'}).format(new Date(`${m}-01T12:00:00Z`))} 2026`,path=`fiktive-testdaten/Zelunavo_Kontoauszug_${names[m.slice(5)]||'Oktober'}_2026_FIKTIV.pdf`;
+      const select=document.getElementById('month');select.value=m;select.dispatchEvent(new Event('change',{bubbles:true}));
+      await window.loadAutomatenberichte?.(m,false);
+      let statementFile=window.zelunavoMonthPackages?.[m]?.statement;
+      if(!statementFile){const response=await fetch(path);if(!response.ok)throw Error(`${title}: Kontoauszug fehlt (${path}).`);statementFile=new File([await response.arrayBuffer()],path.split('/').pop(),{type:'application/pdf'})}
+      const statementDone=eventWait('zelunavo:statement-loaded');assignDemoFile(document.getElementById('statement'),statementFile);const loaded=await statementDone;
+      const statementText=document.getElementById('pdf-text').textContent;
+      const correctMonth=new RegExp(title.replace(' ','\\s+'),'i').test(statementText);
+      add(`${m}-statement`,`${title}: Kontoauszug lesen`,correctMonth&&loaded.bookings>0&&loaded.unread===0,`Monat korrekt, Buchungen erfasst, 0 unlesbare Zeilen`,`${loaded.bookings} Buchungen, ${loaded.unread} unlesbare Zeilen`);
+      let automatic=0,manual=0,deposit=0;
+      for(let rowIndex=0;rowIndex<loaded.bookings;rowIndex++){
+        const row=document.querySelector(`#review-table tbody tr:nth-child(${rowIndex+1})`);if(!row)continue;
+        const state=row.children[3]?.textContent||'';
+        if(state.includes('Bargeldeinzahlung')){deposit++;continue}
+        if(state.startsWith('Vorschlag:')){automatic++;continue}
+        row.querySelector('button[data-action="ignore"]')?.click();manual++;
+      }
+      const confirmed=eventWait('zelunavo:confirmed');document.getElementById('confirm-statement').click();const confirmation=await confirmed;
+      add(`${m}-confirmation`,`${title}: Buchungsliste bestätigt`,confirmation.month===m,m,confirmation.month||'Monat fehlt im Bestätigungsereignis');
+      const sourceReports=window.zelunavoDemoSources.automation.reportsFor(m),cash=window.getCashbook?.(m),balance=cash?cash.opening+cash.income.reduce((s,r)=>s+r.cents,0)-cash.deposits.reduce((s,r)=>s+r.cents,0)-cash.change.reduce((s,r)=>s+r.cents,0):NaN;
+      const reportsOkay=sourceReports.length===6&&window.cashbookReportsReady?.(m);
+      add(`${m}-reports`,`${title}: sechs Automatenberichte`,reportsOkay,6,sourceReports.length);
+      add(`${m}-cash`,`${title}: Kassenbestand null`,reportsOkay&&balance===0,'0,00 €',new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(balance/100));
+      const fixture=window.zelunavoDemoSources.mhd.fixtureFor(m),validMhd=window.zelunavoDemoSources.validateMhd(m,fixture.recorded,fixture.rows);
+      add(`${m}-mhd`,`${title}: MHD-Monatsdaten`,validMhd.valid,`${fixture.rows.length} gültige Zeilen`,`${fixture.rows.length-validMhd.errors.length} gültig`);
+      const shot=await window.zelunavoDemoSources.mhd.createScreenshot(m),shotFile=new File([shot],`Zelunavo_MHD_${m}_FIKTIV.png`,{type:'image/png'});
+      const firstMhd=eventWait('zelunavo:mhd-prepared');assignDemoFile(document.getElementById('demo-shot'),shotFile);await firstMhd;
+      const verifiedMhd=eventWait('zelunavo:mhd-prepared');document.getElementById('demo-mhd-apply').click();const checked=await verifiedMhd;
+      add(`${m}-mhd-confirmed`,`${title}: MHD-Liste übernommen`,/geprüft/i.test(checked.source||''),'Sichtprüfung bestätigt',checked.source||'Quelle fehlt');
+      const finalDone=eventWait('zelunavo:finalized');
+      const finalButton=document.getElementById('demo-final-create');
+      if(finalButton.disabled)throw Error(`${title}: Abschluss-PDF bleibt gesperrt: ${document.getElementById('demo-final-status').textContent}`);
+      finalButton.click();const finalized=await finalDone;
+      add(`${m}-pdf`,`${title}: Abschluss-PDF zusammensetzen`,!!finalized.valid&&finalized.pages>0,'valide PDF mit Monatsbestandteilen',`${finalized.pages||0} Seiten · ${finalized.components||0} Bestandteile`);
+      add(`${m}-archive`,`${title}: fiktive Demoablage`,!!finalized.valid&&finalized.archived>0,'Dateien im Browserarchiv',`${finalized.archived||0} Dateien`);
+      add(`${m}-matches`,`${title}: Belegprüfung nachvollziehbar`,automatic+manual+deposit===loaded.bookings,`${loaded.bookings} Buchungen klassifiziert`,`${automatic} automatisch · ${manual} manuell ignoriert · ${deposit} Einzahlungen`);
+    }
+    const invalid=[
+      ['empty-list',{month:'2026-06',recorded:'01.06.2026',rows:[]}],
+      ['missing-article',{month:'2026-06',recorded:'01.06.2026',rows:[{article:'',quantity:1,expiry:'14.06.2026'}]}],
+      ['quantity-zero',{month:'2026-06',recorded:'01.06.2026',rows:[{article:'Demoartikel',quantity:0,expiry:'14.06.2026'}]}],
+      ['quantity-fraction',{month:'2026-07',recorded:'01.07.2026',rows:[{article:'Demoartikel',quantity:1.5,expiry:'14.07.2026'}]}],
+      ['bad-date',{month:'2026-08',recorded:'01.08.2026',rows:[{article:'Demoartikel',quantity:2,expiry:'31.02.2026'}]}],
+      ['wrong-recording-month',{month:'2026-09',recorded:'01.08.2026',rows:[{article:'Demoartikel',quantity:2,expiry:'14.09.2026'}]}],
+      ['duplicate-mhd',{month:'2026-09',recorded:'01.09.2026',rows:[{article:'Demoartikel',quantity:2,expiry:'14.09.2026'},{article:'Demoartikel',quantity:3,expiry:'14.09.2026'}]}],
+      ['over-limit',{month:'2026-09',recorded:'01.09.2026',rows:Array.from({length:31},(_,i)=>({article:`Demoartikel ${i}`,quantity:1,expiry:'14.09.2026'}))}]
+    ];
+    for(const [id,input] of invalid){const check=window.zelunavoDemoSources.validateMhd(input.month,input.recorded,input.rows);add(`error-${id}`,`Fehlerfall MHD: ${id}`,!check.valid,'Eingabe zurückgewiesen',check.errors.join(' ')||'akzeptiert')}
+    const unread=parseStatement([[{items:[{x:40,text:'Buchungstag'},{x:400,text:'Betrag'},{x:520,text:'Kontostand'}]},{items:[{x:40,text:'16.06.2026'},{x:110,text:'Unleserliche fiktive Buchung'},{x:405,text:'?'}]}]]);
+    add('error-statement-unread','Fehlerfall Kontoauszug: unlesbare Zeile wird markiert',unread.unread.length===1,'1 Zeile zur Sichtprüfung',`${unread.unread.length} Zeile(n) erkannt`);
+    const imbalanced={opening:1000,income:[{cents:500}],deposits:[],change:[]};
+    add('error-cashbook-nonzero','Fehlerfall Kassenbuch: Restbestand blockiert Abschluss',window.cashbookIsBalanced?.(imbalanced)===false,'Abschluss gesperrt',window.cashbookIsBalanced?.(imbalanced)?'fälschlich ausgeglichen':'Restbetrag erkannt');
+    const passed=results.filter(result=>result.passed).length;
+    window.dispatchEvent(new CustomEvent('zelunavo:month-suite-results',{detail:{label:'Ende-zu-Ende-Monatsläufe Juni bis September · fiktive Dateien',passed,total:results.length,results}}));
+  }catch(error){results.push({id:'suite-aborted',title:'Monatslauf abgebrochen',passed:false,expected:'alle Monatsfälle durchlaufen',actual:error.message,detail:error.message});window.dispatchEvent(new CustomEvent('zelunavo:month-suite-results',{detail:{label:'Monatsprüfung abgebrochen',passed:results.filter(item=>item.passed).length,total:results.length,results}}))}
+  finally {if(run)run.disabled=false}
+});
+sessionStorage.removeItem('zelunavo-demo-order');
+
+</script>
+</body></html>

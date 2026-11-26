@@ -1,0 +1,189 @@
+{
+  "month": "2026-10",
+  "statement": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/Zelunavo_Kontoauszug_Oktober_2026_FIKTIV.pdf",
+  "salesReport": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/verkaufsberichte/Zelunavo_Verkaufsbericht_2026-10_FIKTIV.pdf",
+  "invoices": [
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_FC-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_FN-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_ZN-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_AMZ-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_ZN-2026-102_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_WK-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_LA-2026-101_FIKTIV.pdf",
+    "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/rechnungen/Zelunavo_Rechnung_Oktober_2026_WS-2026-101_FIKTIV.pdf"
+  ],
+  "automationReports": [
+    {
+      "machine": "Demoautomat Nord",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_Nord_FIKTIV.pdf"
+    },
+    {
+      "machine": "Demoautomat Mitte",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_Mitte_FIKTIV.pdf"
+    },
+    {
+      "machine": "Demoautomat Süd",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_Sued_FIKTIV.pdf"
+    },
+    {
+      "machine": "Demoautomat Getränke",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_Getraenke_FIKTIV.pdf"
+    },
+    {
+      "machine": "Demoautomat Snacks",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_Snacks_FIKTIV.pdf"
+    },
+    {
+      "machine": "Demoautomat West",
+      "file": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/automatendaten/Zelunavo_Automatendaten_2026-10_Demoautomat_West_FIKTIV.pdf"
+    }
+  ],
+  "mhd": {
+    "recorded": "01.10.2026",
+    "rows": [
+      {
+        "article": "Demo Cola Orange 0,33 l",
+        "quantity": 16,
+        "expiry": "14.10.2026"
+      },
+      {
+        "article": "Muster Hafer-Riegel Apfel 45 g",
+        "quantity": 13,
+        "expiry": "21.10.2026"
+      },
+      {
+        "article": "Beispiel Eistee Zitrone 0,5 l",
+        "quantity": 10,
+        "expiry": "03.11.2026"
+      },
+      {
+        "article": "Demo Studentenfutter 60 g",
+        "quantity": 8,
+        "expiry": "12.11.2026"
+      }
+    ]
+  },
+  "timesheet": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/Stundennachweis_Zelunavo_Oktober_2026_FIKTIV.pdf",
+  "cashbook": {
+    "openingCents": 0,
+    "income": [
+      {
+        "name": "Demoautomat Nord",
+        "cents": 108050
+      },
+      {
+        "name": "Demoautomat Mitte",
+        "cents": 655030
+      },
+      {
+        "name": "Demoautomat Süd",
+        "cents": 195040
+      },
+      {
+        "name": "Demoautomat Getränke",
+        "cents": 150560
+      },
+      {
+        "name": "Demoautomat Snacks",
+        "cents": 124510
+      },
+      {
+        "name": "Demoautomat West",
+        "cents": 46810
+      }
+    ],
+    "depositsCents": [
+      300000,
+      330000,
+      325000,
+      310000
+    ],
+    "changeCents": 15000,
+    "endingCents": 0,
+    "change": [
+      {
+        "date": "10.10.2026",
+        "name": "Demoautomat Mitte",
+        "cents": 7500
+      },
+      {
+        "date": "24.10.2026",
+        "name": "Demoautomat Getränke",
+        "cents": 7500
+      }
+    ]
+  },
+  "knownNoReceipt": [
+    {
+      "date": "01.10.2026",
+      "cents": -3356,
+      "contains": "ROLAND Rechtsschutz",
+      "reason": "Dauernder Versicherungsnachweis liegt dem Steuerberater vor."
+    },
+    {
+      "date": "01.10.2026",
+      "cents": -11900,
+      "contains": "Buchhaltungsservice Monatsrate",
+      "reason": "Wiederkehrende Buchhaltungsrate; kein Monatsbeleg vorgesehen."
+    },
+    {
+      "date": "01.10.2026",
+      "cents": -17255,
+      "contains": "Buchhaltungsservice FiBu",
+      "reason": "Wiederkehrende FiBu-Rate; kein Monatsbeleg vorgesehen."
+    },
+    {
+      "date": "01.10.2026",
+      "cents": 16481,
+      "contains": "Zelunavo Demo-Zahlungsdienst",
+      "reason": "Fiktive Demo-Gutschrift ohne Beleganforderung."
+    },
+    {
+      "date": "02.10.2026",
+      "cents": -90000,
+      "contains": "Ladenfläche",
+      "reason": "Wiederkehrende Mietzahlung; Nachweis liegt dem Steuerberater vor."
+    },
+    {
+      "date": "02.10.2026",
+      "cents": -44000,
+      "contains": "Betriebskosten Ladenfläche",
+      "reason": "Wiederkehrende Betriebskosten; kein Monatsbeleg vorgesehen."
+    },
+    {
+      "date": "02.10.2026",
+      "cents": -29750,
+      "contains": "Lager Miete",
+      "reason": "Wiederkehrende Lagermiete; kein Monatsbeleg vorgesehen."
+    },
+    {
+      "date": "02.10.2026",
+      "cents": -100100,
+      "contains": "Demo-Kernland Energie",
+      "reason": "Wiederkehrender Energieabschlag; kein Einzelbeleg für diesen Monatslauf vorgesehen."
+    },
+    {
+      "date": "02.10.2026",
+      "cents": -21563,
+      "contains": "Demo-Personal Oktober 2026",
+      "reason": "Personalkosten; Mitarbeiterunterlagen werden separat beigefügt."
+    },
+    {
+      "date": "19.10.2026",
+      "cents": -8750,
+      "contains": "EnBW Demo Energie",
+      "reason": "Wiederkehrende EnBW-Zahlung; Nachweis liegt dem Steuerberater vor."
+    },
+    {
+      "date": "26.10.2026",
+      "cents": -2975,
+      "contains": "Reynders Etiketten Deutschland",
+      "reason": "Wiederkehrende Reynders-Strompauschale; Nachweis liegt dem Steuerberater vor."
+    }
+  ],
+  "manualUploadOnly": [
+    "AMZ-2026-101"
+  ],
+  "mhdScreenshot": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/WhatsApp_MHD_Oktober_2026_FIKTIV.png",
+  "cashbookWorkbook": "fiktive-testdaten/Zelunavo_Monatsfall_Oktober_2026_FIKTIV/Zelunavo_Kassenbuch_Oktober_2026_FIKTIV.xlsx"
+}
